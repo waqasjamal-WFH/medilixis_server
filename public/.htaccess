@@ -4,10 +4,10 @@ Options +Indexes +FollowSymLinks +MultiViews
 </IfModule>
 
     RewriteEngine On
-    
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
- RewriteRule ^(.*)$/$1 [L,R=301]
+ RewriteRule ^(.*)/$ /$1 [L,R=301]
       # RewriteRule ^(.*)$ public/$1 [L,R=301]
 
     
