@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use App\restfulModel;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
+// use Illuminate\Routing\Controller as BaseController;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -27,7 +27,7 @@ class Controller extends BaseController
 
 
         protected $rest;
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    // use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     //    $username_session=$_SESSION['username'];
 
 
