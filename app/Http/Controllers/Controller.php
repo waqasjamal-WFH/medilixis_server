@@ -12,7 +12,7 @@ use App\restfulModel;
 // use Illuminate\Foundation\Validation\ValidatesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use DB;
-// use Session;
+use Session;
 
 use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
