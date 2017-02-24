@@ -16,3 +16,14 @@ $app->get('/', function () use ($app) {
 });
 
 $app->get('/a', 'Controller@hello');
+
+
+
+//routes for restful api
+$app->post('/signup', 'Controller@userSignup');
+$app->post('/login', 'Controller@userLogin');
+
+$app->post('/logout', 'Controller@userLogout');
+$app->post('/update', 'Controller@userUpdate');
+$app->post('/patientInsert', 'Controller@addPatient');
+$app->post('/changepassword', 'Controller@changePass');
