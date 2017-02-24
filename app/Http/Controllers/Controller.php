@@ -13,6 +13,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use DB;
 // use Session;
+
+use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
 {
     public function hello(){
