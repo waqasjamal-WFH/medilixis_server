@@ -12,7 +12,7 @@ use App\restfulModel;
 // use Illuminate\Foundation\Validation\ValidatesRequests;
 // use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 // use DB;
-use Session;
+// use Session;
 
 use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
@@ -73,7 +73,7 @@ class Controller extends BaseController
     //        print_r($return);
         if($return['result']=="true"){
     //            $request->session()->put('username', $return['data']->username);
-            \Session::put('username', $return['data']->username);
+            // \Session::put('username', $return['data']->username);
 
     //            $_SESSION['username']=$return['data']->username;
             $response = json_encode(array(
@@ -81,7 +81,7 @@ class Controller extends BaseController
                 "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
                 "data" => array(
     //                    $return['data'],
-                    Session::get('username')
+                    // Session::get('username')
 
         )
             ));
@@ -256,8 +256,8 @@ class Controller extends BaseController
     //forget password api end
 
 
-    public function checkSession(){
-        $sess=Session::get('username');
-        return $sess;
-    }
+    // public function checkSession(){
+    //     $sess=Session::get('username');
+    //     return $sess;
+    // }
 }
