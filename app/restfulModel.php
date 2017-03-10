@@ -75,7 +75,7 @@ class restfulModel extends Model
 
 $user = DB::table('users')
 ->select('users.*', 'roles.*')
-            ->join('roles', 'roles.id', '=', 'users.role_id')
+            ->join('roles', 'users.role_id', '=', 'roles.id')
 
             ->where('email','=', $data->email)
            ->where('password','=', md5($data->password))
