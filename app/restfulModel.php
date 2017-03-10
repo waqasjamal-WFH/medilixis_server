@@ -96,15 +96,23 @@ class restfulModel extends Model
 
                // fetch data again after updating token
 //               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
-           $user=DB::table('users')
-               ->join('roles', function($join)
-               {
-                   $join->on('users.role_id', '=', 'roles.id');
-
-               })
-               ->where('email','=', $data->email)
+          
+           $shares = DB::table('users')
+          ->join('users', 'users.role_id', '=', 'roles.id')
+          ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+          ->where('email','=', $data->email)
                ->where('password','=', md5($data->password))
                ->first();
+           
+           // $user=DB::table('users')
+           //     ->join('roles', function($join)
+           //     {
+           //         $join->on('users.role_id', '=', 'roles.id');
+
+           //     })
+           //     ->where('email','=', $data->email)
+           //     ->where('password','=', md5($data->password))
+           //     ->first();
 
            return array('result'=>"true", 'token'=>$token,'data'=> $user);
 
