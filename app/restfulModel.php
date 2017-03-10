@@ -70,16 +70,27 @@ class restfulModel extends Model
 //           ->where('email', $data->email)
 //           ->where('password', md5($data->password))
 //           ->first();
-       $user=DB::table('users')
-           ->join('roles', function($join)
-           {
-               $join->on('users.role_id', '=', 'roles.id');
+       
 
-           })
-           ->where('email','=', $data->email)
+
+$users = DB::table('users')
+            ->leftJoin('roles', 'users.role_id', '=', 'roles.id')
+            ->where('email','=', $data->email)
            ->where('password','=', md5($data->password))
            ->first();
-//       $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
+
+       // $user=DB::table('users')
+       //     ->join('roles', function($join)
+       //     {
+       //         $join->on('users.role_id', '=', 'roles.id');
+
+       //     })
+           // ->where('email','=', $data->email)
+           // ->where('password','=', md5($data->password))
+           // ->first();
+
+
+
        $token = "";
        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
@@ -87,7 +98,7 @@ class restfulModel extends Model
        for($i=0;$i<32;$i++){
            $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
        }
-      var_dump($user) ;
+      print_r($user) ;
       // print_r("  ") ;
       //  print_r($token) ;
 
