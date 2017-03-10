@@ -97,6 +97,8 @@ class restfulModel extends Model
                ->where('id', $user->id)
                ->update(['token' => '1122aq']);
 
+               if($updatetoken){echo"true";}else{echo"false";};
+
                // fetch data again after updating token
 //               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
           
