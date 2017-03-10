@@ -88,6 +88,7 @@ class restfulModel extends Model
            $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
        }
       print_r($user) ;
+       print_r($token) ;
 //        if(!empty($user) || isset($user)){
 
 //             $updatetoken=  DB::table('users')
