@@ -87,7 +87,7 @@ class restfulModel extends Model
        for($i=0;$i<32;$i++){
            $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
        }
-      print_r($user) ;
+      var_dump($user) ;
       // print_r("  ") ;
       //  print_r($token) ;
 
