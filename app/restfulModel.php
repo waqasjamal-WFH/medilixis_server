@@ -91,39 +91,39 @@ class restfulModel extends Model
       // print_r("  ") ;
       //  print_r($token) ;
 
-//        if(!empty($user) || isset($user)){
+       if(!empty($user) || isset($user)){
 
-//             $updatetoken=  DB::table('users')
-//                ->where('id', $user->id)
-//                ->update(['token' => '1122aq']);
+            $updatetoken=  DB::table('users')
+               ->where('id', $user->id)
+               ->update(['token' => "1122aq"]);
 
-//                if($updatetoken){echo"true";}else{echo"false";};
+               if($updatetoken){echo"true";}else{echo"false";};
 
-//                // fetch data again after updating token
-// //               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
+               // fetch data again after updating token
+//               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
           
-//           //  $newuser = DB::table('users')
-//           // ->join('roles', 'roles.id', '=', 'users.role_id')
-//           // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
-//           // ->where('email','=', $data->email)
-//           //      ->where('password','=', md5($data->password))
-//           //      ->first();
+          //  $newuser = DB::table('users')
+          // ->join('roles', 'roles.id', '=', 'users.role_id')
+          // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+          // ->where('email','=', $data->email)
+          //      ->where('password','=', md5($data->password))
+          //      ->first();
            
-//            // $user=DB::table('users')
-//            //     ->join('roles', function($join)
-//            //     {
-//            //         $join->on('users.role_id', '=', 'roles.id');
+           // $user=DB::table('users')
+           //     ->join('roles', function($join)
+           //     {
+           //         $join->on('users.role_id', '=', 'roles.id');
 
-//            //     })
-//            //     ->where('email','=', $data->email)
-//            //     ->where('password','=', md5($data->password))
-//            //     ->first();
+           //     })
+           //     ->where('email','=', $data->email)
+           //     ->where('password','=', md5($data->password))
+           //     ->first();
 
-//            return array('result'=>"true", 'token'=>$token,'data'=> $user);
+           return array('result'=>"true", 'token'=>$token,'data'=> $user);
 
-//        }else{
-//            return array('result'=>"false");
-//        }
+       }else{
+           return array('result'=>"false");
+       }
    }
    
    public function userlogout_model($data){
