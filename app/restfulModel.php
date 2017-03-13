@@ -89,6 +89,11 @@ class restfulModel extends Model
       ->where('email','=', $data->email)
       ->where('password','=', md5($data->password))
       ->first();
+
+      //fetch user complete data from user details table
+
+      $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
+      print_r($user_detail) ;
            
       return array('result'=>"true", 'token'=>$token,'data'=> $newuser);
     }else{
