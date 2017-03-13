@@ -62,62 +62,39 @@ class restfulModel extends Model
     }
 
 
-   public function userlogin_model($data){
+  public function userlogin_model($data){
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
+    ->join('roles', 'users.role_id', '=', 'roles.id')
+    ->where('email','=', $data->email)
+    ->where('password','=', md5($data->password))
+    ->first();
 
-
-
-        $user = DB::table('users')
-          ->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
-          ->join('roles', 'users.role_id', '=', 'roles.id')
-          ->where('email','=', $data->email)
-          ->where('password','=', md5($data->password))
-          ->first();
-
-       $token = "";
-       $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-       $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-       $codeAlphabet.= "0123456789";
-       for($i=0;$i<32;$i++){
-           $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
-       }
-      print_r($user) ;
-      // print_r("  ") ;
-      //  print_r($token) ;
-
-       if(!empty($user) || isset($user)){
-
-            $updatetoken=  DB::table('users')
-               ->where('id', $user->userID)
-               ->update(['token' => $token]);
-
-               if($updatetoken){echo"true";}else{echo"false";};
-
-               // fetch data again after updating token
-//               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
-          
-          $newuser = DB::table('users')
-            ->join('roles', 'roles.id', '=', 'users.role_id')
-            ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
-            ->where('email','=', $data->email)
-            ->where('password','=', md5($data->password))
-            ->first();
+    $token = "";
+    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    $codeAlphabet.= "0123456789";
+    for($i=0;$i<32;$i++){
+      $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
+    }
+      // print_r($user) ;
+    if(!empty($user) || isset($user)){
+      $updatetoken=  DB::table('users')
+      ->where('id', $user->userID)
+      ->update(['token' => $token]);
+          // fetch data again after updating token
+      $newuser = DB::table('users')
+      ->join('roles', 'roles.id', '=', 'users.role_id')
+      ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+      ->where('email','=', $data->email)
+      ->where('password','=', md5($data->password))
+      ->first();
            
-           // $user=DB::table('users')
-           //     ->join('roles', function($join)
-           //     {
-           //         $join->on('users.role_id', '=', 'roles.id');
-
-           //     })
-           //     ->where('email','=', $data->email)
-           //     ->where('password','=', md5($data->password))
-           //     ->first();
-
-           return array('result'=>"true", 'token'=>$token,'data'=> $newuser);
-
-       }else{
-           return array('result'=>"false");
-       }
-   }
+      return array('result'=>"true", 'token'=>$token,'data'=> $newuser);
+    }else{
+       return array('result'=>"false");
+    }
+  }
    
    public function userlogout_model($data){
        $token = $data->token;
