@@ -81,10 +81,7 @@ class Controller extends BaseController
                        $return['data'],
                     // Session::get('username')
                 ),
-                // "user_details" => array(    
                       "user_details" => $return['user_detail'],
-                    // Session::get('username')
-                // )
             ));
             return $response;
         }else{
