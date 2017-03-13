@@ -63,6 +63,7 @@ class restfulModel extends Model
 
 
   public function userlogin_model($data){
+    $user_details=[];
     $user = DB::table('users')
     ->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
     ->join('roles', 'users.role_id', '=', 'roles.id')
@@ -94,7 +95,12 @@ class restfulModel extends Model
 
       $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
       // print_r($user_detail) ;
-           
+      foreach ($user_detail as $key => $value) {
+        $user_details[$key]=$value;
+
+      };
+      print_r($user_details) ; 
+
       return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_detail );
     }else{
        return array('result'=>"false");
