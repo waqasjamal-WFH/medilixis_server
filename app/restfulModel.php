@@ -63,35 +63,15 @@ class restfulModel extends Model
 
 
    public function userlogin_model($data){
-//       $user=DB::table('users')
-//           ->join('roles', 'users.role_id', '=', 'roles.id')
-//////           ->join('orders', 'users.id', '=', 'orders.user_id')
-//           ->select('*')
-//           ->where('email', $data->email)
-//           ->where('password', md5($data->password))
-//           ->first();
-       
 
 
-$user = DB::table('users')
-->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
-            ->join('roles', 'users.role_id', '=', 'roles.id')
 
-            ->where('email','=', $data->email)
-           ->where('password','=', md5($data->password))
-           ->first();
-
-       // $user=DB::table('users')
-       //     ->join('roles', function($join)
-       //     {
-       //         $join->on('users.role_id', '=', 'roles.id');
-
-       //     })
-           // ->where('email','=', $data->email)
-           // ->where('password','=', md5($data->password))
-           // ->first();
-
-
+        $user = DB::table('users')
+          ->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
+          ->join('roles', 'users.role_id', '=', 'roles.id')
+          ->where('email','=', $data->email)
+          ->where('password','=', md5($data->password))
+          ->first();
 
        $token = "";
        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -107,20 +87,20 @@ $user = DB::table('users')
        if(!empty($user) || isset($user)){
 
             $updatetoken=  DB::table('users')
-               ->where('id', $user->id)
-               ->update(['token' => "1122aq"]);
+               ->where('id', $user->userID)
+               ->update(['token' => $token]);
 
                if($updatetoken){echo"true";}else{echo"false";};
 
                // fetch data again after updating token
 //               $user = DB::table('users')->where('email', $data->email)->where('password', md5($data->password))->first();
           
-          //  $newuser = DB::table('users')
-          // ->join('roles', 'roles.id', '=', 'users.role_id')
-          // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
-          // ->where('email','=', $data->email)
-          //      ->where('password','=', md5($data->password))
-          //      ->first();
+          $newuser = DB::table('users')
+            ->join('roles', 'roles.id', '=', 'users.role_id')
+            ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+            ->where('email','=', $data->email)
+            ->where('password','=', md5($data->password))
+            ->first();
            
            // $user=DB::table('users')
            //     ->join('roles', function($join)
@@ -132,7 +112,7 @@ $user = DB::table('users')
            //     ->where('password','=', md5($data->password))
            //     ->first();
 
-           return array('result'=>"true", 'token'=>$token,'data'=> $user);
+           return array('result'=>"true", 'token'=>$token,'data'=> $newuser);
 
        }else{
            return array('result'=>"false");
