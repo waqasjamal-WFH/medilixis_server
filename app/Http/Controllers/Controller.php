@@ -80,7 +80,7 @@ class Controller extends BaseController
                 "data" => array(    
                        $return['data'],
                     // Session::get('username')
-                )
+                ),
                 // "user_details" => array(    
                       "user_details" => $return['user_detail'],
                     // Session::get('username')
