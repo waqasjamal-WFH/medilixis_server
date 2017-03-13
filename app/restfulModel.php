@@ -99,9 +99,9 @@ class restfulModel extends Model
         $user_details[$value->key_name]=$value->key_value;
 
       };
-      print_r($user_details) ; 
+      // print_r($user_details) ; 
 
-      return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_detail );
+      return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_details );
     }else{
        return array('result'=>"false");
     }
