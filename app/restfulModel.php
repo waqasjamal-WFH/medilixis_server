@@ -93,9 +93,9 @@ class restfulModel extends Model
       //fetch user complete data from user details table
 
       $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
-      print_r($user_detail) ;
+      // print_r($user_detail) ;
            
-      return array('result'=>"true", 'token'=>$token,'data'=> $newuser);
+      return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_detail );
     }else{
        return array('result'=>"false");
     }
