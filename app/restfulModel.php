@@ -96,7 +96,7 @@ class restfulModel extends Model
       $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
       // print_r($user_detail) ;
       foreach ($user_detail as $key => $value) {
-        $user_details[$key]=$value;
+        $user_details[$key->key_name]=$value;
 
       };
       print_r($user_details) ; 
