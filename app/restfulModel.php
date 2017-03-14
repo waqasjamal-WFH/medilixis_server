@@ -188,8 +188,28 @@ class restfulModel extends Model
 
     public function add_company_model($data){
 
-      return $data;
+      $insert= DB::table('company')->insert([
+            'short_name' => $data->data->short_name, 
+            'full_name' => $data->data->full_name, 
+            'address' => $data->data->address,
+            'city' => $data->data->city,
+            'state' => $data->data->state,
+            'zip_code' => $data->data->zip_code,
+            'country' => $data->data->country,
+            'phone' => $data->data->phone,
+            'fax' => $data->data->fax,
+            'e_mail' => $data->data->e_mail,
+            'web_address' => $data->data->website,
+            'time_zone' => $data->data->timezone,
+            'admin_person_name' => $data->data->admin_person_name,
+            
+        ]);
 
+        if($insert){
+            return array('result'=>"true", 'token'=>$data->token);
+        }else{
+            return array('result'=>"false", 'token'=>$data->token);
+        }
     }
 
 
