@@ -184,8 +184,11 @@ class restfulModel extends Model
         }else{
             return array('result'=>"false", 'token'=>$data->token);
         }
+    }
 
+    public function add_company_model($data){
 
+      return $data;
 
     }
 

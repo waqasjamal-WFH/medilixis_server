@@ -256,9 +256,35 @@ class Controller extends BaseController
 
         $authenticate=$this->auth_token($data->token);
         if($authenticate['result']=="true"){
-            print_r("token accepted");
+            $return=$model->add_company_model($data);
+            // if($return['result']=="true"){
+            //     $response = json_encode(array(
+            //         "status" => "success",
+            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+            //         "data" => array(
+
+            //         )
+            //     ));
+            //     return $response;
+            // }else{
+            //     $response = json_encode(array(
+            //         "status" => "fail",
+            //         "error" =>array("type"=>"sql", "message"=>"unable to change password") ,
+
+            //     ));
+
+            //     return $response;
+            // }
+            print_r($return);
         }else{
-            print_r("token rejected");
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid") ,
+
+            ));
+
+            return $response;
+            // print_r("token rejected");
         }
         // print_r($data->token);
 
