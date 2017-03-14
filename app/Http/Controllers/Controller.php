@@ -248,6 +248,13 @@ class Controller extends BaseController
 
             return $response;
         }
+    }
+
+    public function add_company(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+
+        print_r($data);
 
     }
 

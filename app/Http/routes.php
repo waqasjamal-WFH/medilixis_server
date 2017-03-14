@@ -27,3 +27,5 @@ $app->post('/logout', 'Controller@userLogout');
 $app->post('/update', 'Controller@userUpdate');
 $app->post('/patientInsert', 'Controller@addPatient');
 $app->post('/changepassword', 'Controller@changePass');
+
+$app->post('/addCompany', 'Controller@add_company');
