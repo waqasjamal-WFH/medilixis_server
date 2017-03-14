@@ -254,8 +254,13 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
 
-        // $authenticate=$this->auth_token($data->token);
-        print_r($data->token);
+        $authenticate=$this->auth_token($data->token);
+        if($authenticate['result']=="true"){
+            print_r("token accepted");
+        }else{
+            print_r("token rejected");
+        }
+        // print_r($data->token);
 
     }
 
