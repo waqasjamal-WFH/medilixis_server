@@ -300,7 +300,7 @@ class Controller extends BaseController
         // print_r($return);
 
         if($authenticate['result']=="true"){
-            $return=$model->get_company_model();
+            $return=$model->get_company_model($data);
 
             if($return['result']=="true"){
                 $response = json_encode(array(
