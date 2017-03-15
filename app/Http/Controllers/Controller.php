@@ -294,7 +294,7 @@ class Controller extends BaseController
     public function get_company(){
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
-        $authenticate=$this->auth_token($data->token);
+        // $authenticate=$this->auth_token($data->token);
         
         $return=$model->get_company_model($data);
         print_r($return);
