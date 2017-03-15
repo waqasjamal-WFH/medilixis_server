@@ -123,98 +123,100 @@ class restfulModel extends Model
    }
    
    
-   public function userUpdate_model($data){
-        $keyname=[];
-        $keyvalue=[];
-        $i=0;
-        foreach($data as $key=>$va){
-            $keyname[$key]=$key;
-            $keyvalue[$key]=$va;
-            $i++;
-        }
+  public function userUpdate_model($data){
+      $keyname=[];
+      $keyvalue=[];
+      $i=0;
+      foreach($data as $key=>$va){
+          $keyname[$key]=$key;
+          $keyvalue[$key]=$va;
+          $i++;
+      }
 
 //        return $keyvalue;
-        $lastid= DB::table('users')->where('token' , $keyvalue["token"])->update([
-            'username' => $keyvalue['data']->username, 'password' => md5($keyvalue['data']->password), 'email' => $keyvalue['data']->email
-        ]);
+      $lastid= DB::table('users')->where('token' , $keyvalue["token"])->update([
+          'username' => $keyvalue['data']->username, 'password' => md5($keyvalue['data']->password), 'email' => $keyvalue['data']->email
+      ]);
 
-        unset($keyvalue['data']->username);
-        unset($keyvalue['data']->password);
-        unset($keyvalue['data']->email);
-        unset($keyvalue['password']);
-        unset($keyname['email']);
-        unset($keyvalue['email']);
+      unset($keyvalue['data']->username);
+      unset($keyvalue['data']->password);
+      unset($keyvalue['data']->email);
+      unset($keyvalue['password']);
+      unset($keyname['email']);
+      unset($keyvalue['email']);
 
-        foreach($keyvalue['data'] as $kn=>$kv){
-            DB::table('userdetails')->where('user_id' , $keyvalue["userid"])->where('key_name' , $kn)->update([
-                 'key_value' => $keyvalue['data']->$kn
-            ]);
+      foreach($keyvalue['data'] as $kn=>$kv){
+          DB::table('userdetails')->where('user_id' , $keyvalue["userid"])->where('key_name' , $kn)->update([
+               'key_value' => $keyvalue['data']->$kn
+          ]);
 
-        }
-        return array('result'=>"true", 'token'=>$keyvalue["token"]);
-
-    }
+      }
+      return array('result'=>"true", 'token'=>$keyvalue["token"]);
+  }
     
     
      // add patient model start
-    public function addPatient_model($data){
-        $insert= DB::table('patient')->insert([
-            'patient_name' => $data->patientname, 'date_of_birth' => $data->dateofbirth, 'date_of_service' => $data->dateofservice,'visit_type'=>$data->visittype
-        ]);
+  public function addPatient_model($data){
+      $insert= DB::table('patient')->insert([
+          'patient_name' => $data->patientname, 'date_of_birth' => $data->dateofbirth, 'date_of_service' => $data->dateofservice,'visit_type'=>$data->visittype
+      ]);
 
-        if($insert){
-            return array('result'=>"true", 'token'=>$data->token);
-        }else{
-            return array('result'=>"false", 'token'=>$data->token);
-        }
+      if($insert){
+          return array('result'=>"true", 'token'=>$data->token);
+      }else{
+          return array('result'=>"false", 'token'=>$data->token);
+      }
 
-    }
+  }
 
     // add patient model end
 
     // change pass model api
 
-    public function changePass_model($data){
-        $update=DB::table('users')
-                    ->where('token', $data->token)
-                    ->where('password', md5($data->oldpass))
-                    ->update(['password' => md5($data->newpass)]);
-        if($update){
-            return array('result'=>"true", 'token'=>$data->token);
-        }else{
-            return array('result'=>"false", 'token'=>$data->token);
-        }
+  public function changePass_model($data){
+      $update=DB::table('users')
+                  ->where('token', $data->token)
+                  ->where('password', md5($data->oldpass))
+                  ->update(['password' => md5($data->newpass)]);
+      if($update){
+          return array('result'=>"true", 'token'=>$data->token);
+      }else{
+          return array('result'=>"false", 'token'=>$data->token);
+      }
+  }
+
+  public function add_company_model($data){
+
+    $insert= DB::table('company')->insert([
+          'short_name' => $data->data->short_name, 
+          'full_name' => $data->data->full_name, 
+          'address' => $data->data->address,
+          'city' => $data->data->city,
+          'state' => $data->data->state,
+          'zip_code' => $data->data->zip_code,
+          'country' => $data->data->country,
+          'phone' => $data->data->phone,
+          'fax' => $data->data->fax,
+          'e_mail' => $data->data->e_mail,
+          'web_address' => $data->data->website,
+          'time_zone' => $data->data->timezone,
+          'admin_person_name' => $data->data->admin_person_name,
+    ]);
+
+    if($insert){
+        return array('result'=>"true", 'token'=>$data->token);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
     }
+  }
 
-    public function add_company_model($data){
+  // ......................get all company list start here ................
 
-      $insert= DB::table('company')->insert([
-            'short_name' => $data->data->short_name, 
-            'full_name' => $data->data->full_name, 
-            'address' => $data->data->address,
-            'city' => $data->data->city,
-            'state' => $data->data->state,
-            'zip_code' => $data->data->zip_code,
-            'country' => $data->data->country,
-            'phone' => $data->data->phone,
-            'fax' => $data->data->fax,
-            'e_mail' => $data->data->e_mail,
-            'web_address' => $data->data->website,
-            'time_zone' => $data->data->timezone,
-            'admin_person_name' => $data->data->admin_person_name,
-            
-        ]);
+  public function get_company_model(){
+    $user = DB::table('company')
+    ->get();
+  }
 
-        if($insert){
-            return array('result'=>"true", 'token'=>$data->token);
-        }else{
-            return array('result'=>"false", 'token'=>$data->token);
-        }
-    }
-
-
-
-
-
+  // ......................get all company list end here ................
 
 }

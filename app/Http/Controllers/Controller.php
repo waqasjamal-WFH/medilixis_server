@@ -249,6 +249,7 @@ class Controller extends BaseController
             return $response;
         }
     }
+    //forget password api end
 
     public function add_company(){
         $model = new restfulModel();
@@ -287,10 +288,50 @@ class Controller extends BaseController
             // print_r("token rejected");
         }
         // print_r($data->token);
-
     }
 
-    //forget password api end
+//.......................get company api start here........
+    public function get_company(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        $authenticate=$this->auth_token($data->token);
+        
+        $return=$model->get_company_model($data);
+        print_r($return);
+
+        // if($authenticate['result']=="true"){
+        //     $return=$model->get_company_model($data);
+
+        //     if($return['result']=="true"){
+        //         $response = json_encode(array(
+        //             "status" => "success",
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+        //             "data" => array(
+
+        //             )
+        //         ));
+        //         return $response;
+        //     }else{
+        //         $response = json_encode(array(
+        //             "status" => "fail",
+        //             "error" =>array("type"=>"sql", "message"=>"unable to change password") ,
+
+        //         ));
+
+        //         return $response;
+        //     }
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+        //     ));
+
+        //     return $response;
+        // }
+    }
+//.......................get company api end here....................
+
+    
 
 
     // public function checkSession(){

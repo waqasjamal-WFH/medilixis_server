@@ -29,3 +29,5 @@ $app->post('/patientInsert', 'Controller@addPatient');
 $app->post('/changepassword', 'Controller@changePass');
 
 $app->post('/addCompany', 'Controller@add_company');
+
+$app->post('/getCompany', 'Controller@get_company');
