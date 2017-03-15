@@ -307,7 +307,7 @@ class Controller extends BaseController
                     "status" => "success",
                     "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
                     "data" => array(
-                        $return['data']
+                        $return['data'][0]
                     )
                 ));
                 return $response;
