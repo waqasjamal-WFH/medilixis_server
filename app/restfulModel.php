@@ -213,8 +213,12 @@ class restfulModel extends Model
   // ......................get all company list start here ................
 
   public function get_company_model(){
-    $user = DB::table('company')->get();
-    return $user;
+    $list = DB::table('company')->get();
+    if($list){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $list);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
 
     
   }
