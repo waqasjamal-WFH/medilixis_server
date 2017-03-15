@@ -308,13 +308,13 @@ class Controller extends BaseController
                     "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
                     "data" => array(
                         $return['data'];
-                    )
+                    ),
                 ));
                 return $response;
             }else{
                 $response = json_encode(array(
                     "status" => "fail",
-                    "error" =>array("type"=>"sql", "message"=>"No Company Added") 
+                    "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
 
                 ));
 
