@@ -213,8 +213,8 @@ class restfulModel extends Model
   // ......................get all company list start here ................
 
   public function get_company_model(){
-    $user = DB::table('company')
-    ->get();
+    $user = DB::table('company')->get();
+    
   }
 
   // ......................get all company list end here ................
