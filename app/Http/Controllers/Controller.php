@@ -296,7 +296,7 @@ class Controller extends BaseController
         $data = json_decode(file_get_contents("php://input"));
         // $authenticate=$this->auth_token($data->token);
         
-        $return=$model->get_company_model($data);
+        $return=$model->get_company_model();
         print_r($return);
 
         // if($authenticate['result']=="true"){
