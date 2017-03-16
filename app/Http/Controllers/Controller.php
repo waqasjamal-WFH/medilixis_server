@@ -337,7 +337,7 @@ class Controller extends BaseController
 
         if($authenticate['result']=="true"){
             $return=$model->get_select_company_model($data);
-             return $return;
+             return $return->token;
 
             // if($return['result']=="true"){
             //     $response = json_encode(array(
