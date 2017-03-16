@@ -327,9 +327,46 @@ class Controller extends BaseController
             return $response;
         }
     }
-//.......................get company api end here....................
+    //.......................get company api end here....................
 
-    
+    //.....................get selected company api start here..................................
+    public function get_select_company(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+            $return=$model->get_select_company_model($data);
+             return $return;
+
+            // if($return['result']=="true"){
+            //     $response = json_encode(array(
+            //         "status" => "success",
+            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+            //         "data" => $return['data']
+            //     ));
+            //     return $response;
+            // }else{
+            //     $response = json_encode(array(
+            //         "status" => "fail",
+            //         "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
+
+            //     ));
+
+            //     return $response;
+            // }
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }
+    }
+
+    //.....................get selected company api end here..................................
+        
 
 
     // public function checkSession(){

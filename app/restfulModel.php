@@ -225,4 +225,10 @@ class restfulModel extends Model
 
   // ......................get all company list end here ................
 
+  //........................get selected company model start here....................
+  public function get_select_company_model($data){
+    return $data;
+  }
+
+  //........................get selected company model end here....................
 }
