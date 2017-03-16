@@ -337,24 +337,23 @@ class Controller extends BaseController
 
         if($authenticate['result']=="true"){
             $return=$model->get_select_company_model($data);
-             return $return->token;
+             
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+                    "data" => $return['data']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
 
-            // if($return['result']=="true"){
-            //     $response = json_encode(array(
-            //         "status" => "success",
-            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
-            //         "data" => $return['data']
-            //     ));
-            //     return $response;
-            // }else{
-            //     $response = json_encode(array(
-            //         "status" => "fail",
-            //         "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
+                ));
 
-            //     ));
-
-            //     return $response;
-            // }
+                return $response;
+            }
         }else{
             $response = json_encode(array(
                 "status" => "fail",

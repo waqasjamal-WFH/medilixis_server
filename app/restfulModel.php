@@ -227,7 +227,12 @@ class restfulModel extends Model
 
   //........................get selected company model start here....................
   public function get_select_company_model($data){
-    return $data;
+    $company = DB::table('company')->where('id',$data->companyid)->get();
+    if($list){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $company);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
   }
 
   //........................get selected company model end here....................
