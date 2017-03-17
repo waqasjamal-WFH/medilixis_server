@@ -254,7 +254,7 @@ class restfulModel extends Model
      //      'time_zone' =>$data->data->timezone,
      //      'admin_person_name' =>$data->data->admin_person_name
 
-        ]);
+        // ]);
     if($data){
         return array('result'=>"true", 'token'=>$data->token, 'data'=>$data->data);
     }else{
