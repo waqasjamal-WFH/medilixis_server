@@ -238,9 +238,9 @@ class restfulModel extends Model
   //........................get selected company model end here....................
 
   //.....................edit selected company model start here....................
-  public function edit_selected_company_model($date){
-    if($date){
-        return array('result'=>"true", 'token'=>$data->token , 'data'=> $date);
+  public function edit_selected_company_model($data){
+    if($data){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $data);
     }else{
         return array('result'=>"false", 'token'=>$data->token);
     }
