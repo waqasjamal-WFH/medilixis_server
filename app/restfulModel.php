@@ -239,11 +239,11 @@ class restfulModel extends Model
 
   //.....................edit selected company model start here....................
   public function edit_selected_company_model($data){
-     $update=DB::table('company')
-                  ->where('id', $data->companyid)
+     // $update=DB::table('company')
+     //              ->where('id', $data->companyid)
                   
-                  ->update(['password' => md5($data->newpass)]);
-    if($update){
+     //              ->update(['password' => md5($data->newpass)]);
+    if($data){
         return array('result'=>"true", 'token'=>$data->token, 'data'=>$data->data->short_name);
     }else{
         return array('result'=>"false", 'token'=>$data->token);
