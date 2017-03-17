@@ -380,12 +380,12 @@ class Controller extends BaseController
 
         if($authenticate['result']=="true"){
             $return=$model->edit_selected_company_model($data);
-
+             
             if($return['result']=="true"){
                 $response = json_encode(array(
                     "status" => "success",
-                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) 
-                    
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+                    "data" => $return['data']
                 ));
                 return $response;
             }else{
