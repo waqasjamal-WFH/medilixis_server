@@ -256,7 +256,7 @@ class restfulModel extends Model
 
         // ]);
     if($data){
-        return array('result'=>"true", 'token'=>$data->token, 'data'=>$data->data);
+        return array('result'=>"true", 'token'=>$data->token, 'data'=>$data->companyid);
     }else{
         return array('result'=>"false", 'token'=>$data->token);
     }
