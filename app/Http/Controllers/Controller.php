@@ -373,7 +373,7 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
 
-        print_r($data) ;
+        return $data;
 
         // $return=$model-edit_selected_company_model($data);
         // $authenticate=$this->auth_token($data->token);
