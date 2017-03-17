@@ -373,38 +373,39 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
 
-        return $data;
+        // return $data;
 
         // $return=$model-edit_selected_company_model($data);
-        // $authenticate=$this->auth_token($data->token);
+        $authenticate=$this->auth_token($data->token);
 
-        // if($authenticate['result']=="true"){
-        //     $return=$model-edit_selected_company_model($data);
+        if($authenticate['result']=="true"){
+            $return=$model->edit_selected_company_model($data);
+            return $return;
              
-        //     if($return['result']=="true"){
-        //         $response = json_encode(array(
-        //             "status" => "success",
-        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
-        //             "data" => $return['data']
-        //         ));
-        //         return $response;
-        //     }else{
-        //         $response = json_encode(array(
-        //             "status" => "fail",
-        //             "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
+            // if($return['result']=="true"){
+            //     $response = json_encode(array(
+            //         "status" => "success",
+            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+            //         "data" => $return['data']
+            //     ));
+            //     return $response;
+            // }else{
+            //     $response = json_encode(array(
+            //         "status" => "fail",
+            //         "error" =>array("type"=>"sql", "message"=>"Company not edit") ,
 
-        //         ));
+            //     ));
 
-        //         return $response;
-        //     }
-        // }else{
-        //     $response = json_encode(array(
-        //         "status" => "fail",
-        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
-        //     ));
+            //     return $response;
+            // }
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
 
-        //     return $response;
-        // }
+            return $response;
+        }
 
     }
 

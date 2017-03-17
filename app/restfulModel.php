@@ -236,4 +236,12 @@ class restfulModel extends Model
   }
 
   //........................get selected company model end here....................
+
+  //.....................edit selected company model start here....................
+  public function edit_selected_company_model($date){
+    return $date;
+  }
+
+  //.....................edit selected company model end here....................
+
 }
