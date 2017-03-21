@@ -273,7 +273,7 @@ class restfulModel extends Model
             $keyvalue[$key]=$va;
             $i++;
         };
-        print_r($keyvalue['data']->username);
+        print_r($keyvalue);
 
         // //token generate function
         // $token = "";
