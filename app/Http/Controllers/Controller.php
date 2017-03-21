@@ -419,7 +419,7 @@ class Controller extends BaseController
         if($return['result']=="true"){
             $response = json_encode(array(
                 "status" => "success",
-                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$data['token']) ,
                 // "data" => array(
                 //     "username" => $data->username,
                 //     "password" => $data->password,
@@ -430,7 +430,7 @@ class Controller extends BaseController
         }else{
             $response = json_encode(array(
                 "status" => "fail",
-                "error" =>array("type"=>"sql", "message"=>"unsuccessful to signup") ,
+                "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
 
             ));
 

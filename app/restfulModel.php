@@ -265,46 +265,52 @@ class restfulModel extends Model
 
   //......................add tranco admin model start here.........................
   public function add_tranco_admin_model($data){
-        $keyname=[];
-        $keyvalue=[];
-        $i=0;
-        foreach($data as $key=>$va){
-            $keyname[$key]=$key;
-            $keyvalue[$key]=$va;
-            $i++;
-        };
-        print_r($keyvalue);
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
 
-        // //token generate function
-        // $token = "";
-        // $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
-        // $codeAlphabet.= "0123456789";
-        // for($i=0;$i<32;$i++){
-        //     $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
-        // }
+    // //token generate function
+    // $token = "";
+    // $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    // $codeAlphabet.= "0123456789";
+    // for($i=0;$i<32;$i++){
+    //     $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
+    // }
 
-       $lastid= DB::table('users')->insertGetId([
-            'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
-        $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
-        unset($keyname['username']);
-        unset($keyvalue['username']);
-        unset($keyname['password']);
-        unset($keyvalue['password']);
-        unset($keyname['email']);
-        unset($keyvalue['email']);
+   $lastid= DB::table('users')->insertGetId([
+        'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
+    $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
+    unset($keyname['username']);
+    unset($keyvalue['username']);
+    unset($keyname['password']);
+    unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
+    unset($keyname['role_id']);
+    unset($keyvalue['role_id']);
 
-        foreach($keyname as $kn=>$kv){
-            DB::table('userdetails')->insert([
-                'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
-            ]);
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+        ]);
+    };
 
-        }
-        return array('result'=>"true", 'token'=>$token);
+    if($lastid){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
   }
 
   //.......................add tranco admin model end here............................
 
   //.....................edit selected company model end here....................
-
 }
