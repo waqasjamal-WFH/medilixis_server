@@ -416,26 +416,26 @@ class Controller extends BaseController
         // print_r($data);
         $return=$model->add_tranco_admin_model($data);
     //        return $return;
-        if($return['result']=="true"){
-            $response = json_encode(array(
-                "status" => "success",
-                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
-                "data" => array(
-                    "username" => $data->username,
-                    "password" => $data->password,
-                    "email" =>  $data->email
-                )
-            ));
-            return $response;
-        }else{
-            $response = json_encode(array(
-                "status" => "fail",
-                "error" =>array("type"=>"sql", "message"=>"unsuccessful to signup") ,
+        // if($return['result']=="true"){
+        //     $response = json_encode(array(
+        //         "status" => "success",
+        //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+        //         "data" => array(
+        //             "username" => $data->username,
+        //             "password" => $data->password,
+        //             "email" =>  $data->email
+        //         )
+        //     ));
+        //     return $response;
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"sql", "message"=>"unsuccessful to signup") ,
 
-            ));
+        //     ));
 
-            return $response;
-        };
+        //     return $response;
+        // };
     }
 
     //......................................add tranco admin api end here.................................
