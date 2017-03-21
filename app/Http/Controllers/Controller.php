@@ -408,6 +408,38 @@ class Controller extends BaseController
 
     }
 
+    //......................................add tranco admin api start here...............................
+
+    public function add_tranco_admin(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        print_r($data);
+    //     $return=$model->userdata_model($data);
+    // //        return $return;
+    //     if($return['result']=="true"){
+    //         $response = json_encode(array(
+    //             "status" => "success",
+    //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+    //             "data" => array(
+    //                 "username" => $data->username,
+    //                 "password" => $data->password,
+    //                 "email" =>  $data->email
+    //             )
+    //         ));
+    //         return $response;
+    //     }else{
+    //         $response = json_encode(array(
+    //             "status" => "fail",
+    //             "error" =>array("type"=>"sql", "message"=>"unsuccessful to signup") ,
+
+    //         ));
+
+    //         return $response;
+    //     };
+    }
+
+    //......................................add tranco admin api end here.................................
+
     //...............................edit selected company api end here.........................
 
     // public function checkSession(){

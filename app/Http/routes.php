@@ -33,3 +33,4 @@ $app->post('/addCompany', 'Controller@add_company');
 $app->post('/getCompany', 'Controller@get_company');
 $app->post('/getselectedCompany', 'Controller@get_select_company');
 $app->post('/editselectedCompany', 'Controller@edit_selected_company');
+$app->post('/addtrancoadmin', 'Controller@add_tranco_admin');
