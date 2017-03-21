@@ -413,29 +413,29 @@ class Controller extends BaseController
     public function add_tranco_admin(){
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
-        // print_r($data);
-        $return=$model->add_tranco_admin_model($data);
-    //        return $return;
-        if($return['result']=="true"){
-            $response = json_encode(array(
-                "status" => "success",
-                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$data['token']) ,
-                // "data" => array(
-                //     "username" => $data->username,
-                //     "password" => $data->password,
-                //     "email" =>  $data->email
-                // )
-            ));
-            return $response;
-        }else{
-            $response = json_encode(array(
-                "status" => "fail",
-                "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
+        print_r($data);
+    //     $return=$model->add_tranco_admin_model($data);
+    // //        return $return;
+    //     if($return['result']=="true"){
+    //         $response = json_encode(array(
+    //             "status" => "success",
+    //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$data['token']) ,
+    //             // "data" => array(
+    //             //     "username" => $data->username,
+    //             //     "password" => $data->password,
+    //             //     "email" =>  $data->email
+    //             // )
+    //         ));
+    //         return $response;
+    //     }else{
+    //         $response = json_encode(array(
+    //             "status" => "fail",
+    //             "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
 
-            ));
+    //         ));
 
-            return $response;
-        };
+    //         return $response;
+    //     };
     }
 
     //......................................add tranco admin api end here.................................
