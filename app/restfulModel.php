@@ -296,6 +296,8 @@ class restfulModel extends Model
       
      $col[$access_right->column_name]= $access_right->status;
     };
+
+    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
     // print_r($col);
     foreach ($data->associate_company as $associate_companies ) {
       
@@ -303,7 +305,7 @@ class restfulModel extends Model
           'user_id' => $lastid, 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
       ]);
     };
-    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
+   
 
 
     $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
