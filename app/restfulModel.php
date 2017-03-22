@@ -283,7 +283,7 @@ class restfulModel extends Model
     //     $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
     // }
 
-   $lastid= DB::table('users')->insertGetId([
+    $lastid= DB::table('users')->insertGetId([
         'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
     
 
@@ -296,9 +296,15 @@ class restfulModel extends Model
       
      $col[$access_right->column_name]= $access_right->status;
     };
-    print_r($col);
+    // print_r($col);
+    foreach ($data->associate_company as $associate_companies ) {
+      
+      DB::table('user_company')->insert([
+          'user_id' => $lastid, 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
+      ]);
+    };
+    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
 
-   DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
 
     $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
     unset($keyname['username']);

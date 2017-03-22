@@ -414,13 +414,13 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
         print_r($data);
-        
+
         $return=$model->add_tranco_admin_model($data);
     //        return $return;
         if($return['result']=="true"){
             $response = json_encode(array(
                 "status" => "success",
-                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$data['token']) ,
+                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
                 // "data" => array(
                 //     "username" => $data->username,
                 //     "password" => $data->password,
