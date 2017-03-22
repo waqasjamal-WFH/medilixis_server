@@ -292,9 +292,9 @@ class restfulModel extends Model
    //      'user_id' => $lastid]);
     
     $col=array();
-    foreach ($data['access_rights'] as $access_right ) {
+    foreach ($data->access_rights as $access_right ) {
       
-     $col[$access_right->column_name ]= $access_right->status;
+     $col[$access_right->column_name]= $access_right->status;
     };
     print_r($col);
 
