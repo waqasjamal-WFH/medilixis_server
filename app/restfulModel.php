@@ -283,31 +283,45 @@ class restfulModel extends Model
     //     $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
     // }
 
-   $lastid= DB::table('users')->insertGetId([
-        'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
-    $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
-    unset($keyname['username']);
-    unset($keyvalue['username']);
-    unset($keyname['password']);
-    unset($keyvalue['password']);
-    unset($keyname['email']);
-    unset($keyvalue['email']);
-    unset($keyname['token']);
-    unset($keyvalue['token']);
-    unset($keyname['role_id']);
-    unset($keyvalue['role_id']);
+   // $lastid= DB::table('users')->insertGetId([
+   //      'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
+    
 
-    foreach($keyname as $kn=>$kv){
-        DB::table('userdetails')->insert([
-            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
-        ]);
-    };
 
-    if($lastid){
-      return array('result'=>"true");
-    }else{
-      return array('result'=>"false");
+   //  $accessright_id= DB::table('nav_permission')->insertGetId([
+   //      'user_id' => $lastid]);
+    
+    $col=array();
+    foreach ($data['access_rights'] as $access_right ) {
+      
+     $col[$access_right->column_name ]= $access_right->status;
     };
+    print_r($col);
+
+   // DB::table('nav_permission')->where('user_id' , $accessright_id)->update(['votes' => 1]);
+   //  $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
+   //  unset($keyname['username']);
+   //  unset($keyvalue['username']);
+   //  unset($keyname['password']);
+   //  unset($keyvalue['password']);
+   //  unset($keyname['email']);
+   //  unset($keyvalue['email']);
+   //  unset($keyname['token']);
+   //  unset($keyvalue['token']);
+   //  unset($keyname['role_id']);
+   //  unset($keyvalue['role_id']);
+
+   //  foreach($keyname as $kn=>$kv){
+   //      DB::table('userdetails')->insert([
+   //          'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+   //      ]);
+   //  };
+
+   //  if($lastid){
+   //    return array('result'=>"true");
+   //  }else{
+   //    return array('result'=>"false");
+   //  };
   }
 
   //.......................add tranco admin model end here............................
