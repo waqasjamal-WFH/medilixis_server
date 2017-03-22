@@ -413,35 +413,53 @@ class Controller extends BaseController
     public function add_tranco_admin(){
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
-       
+        
+        $authenticate=$this->auth_token($data->token);
 
-        $return=$model->add_tranco_admin_model($data);
-    //        return $return;
-        if($return['result']=="true"){
-            $response = json_encode(array(
-                "status" => "success",
-                "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-                // "data" => array(
-                //     "username" => $data->username,
-                //     "password" => $data->password,
-                //     "email" =>  $data->email
-                // )
-            ));
-            return $response;
+        if($authenticate['result']=="true"){
+
+            $return=$model->add_tranco_admin_model($data);
+            // return $return;
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    // "data" => array(
+                    //     "username" => $data->username,
+                    //     "password" => $data->password,
+                    //     "email" =>  $data->email
+                    // )
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
+
+                ));
+
+                return $response;
+            };
         }else{
             $response = json_encode(array(
                 "status" => "fail",
-                "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
-
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
             ));
 
             return $response;
-        };
+        }    
     }
 
     //......................................add tranco admin api end here.................................
 
-    //...............................edit selected company api end here.........................
+    //..............................list tranco admin api start here.......................................
+
+    public function get_tranco_admin(){
+
+    }
+
+    //...............................list tranco admin api end here........................................
+
 
     // public function checkSession(){
     //     $sess=Session::get('username');
