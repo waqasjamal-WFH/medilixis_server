@@ -413,7 +413,7 @@ class Controller extends BaseController
     public function add_tranco_admin(){
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
-        print_r($data);
+       
 
         $return=$model->add_tranco_admin_model($data);
     //        return $return;
