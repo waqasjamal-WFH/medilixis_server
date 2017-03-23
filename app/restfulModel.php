@@ -353,7 +353,7 @@ class restfulModel extends Model
     
     ->get();
      // $list = DB::table('company')->get();
-    print_r($user)
+    print_r($user);
     // if($user){
     //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
     // }else{
