@@ -363,8 +363,8 @@ class restfulModel extends Model
     };
 
     foreach ($user as $users) {
-      $user_comapanies = DB::table('user_comapany')->where('user_id','=', $users->userID)->get();
-      $users->user_comapany=$user_comapanies;
+      $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
+      $users->user_company=$user_comapanies;
     };
     
     
