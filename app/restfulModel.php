@@ -344,7 +344,7 @@ class restfulModel extends Model
   //.......................get tranco admin model start here............................
 
   public function get_tranco_admin_model($data){
-    $data=array();
+   
     $user = DB::table('users')
     ->select('users.id as userID','users.*')
     
