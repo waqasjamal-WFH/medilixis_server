@@ -351,10 +351,10 @@ class restfulModel extends Model
     ->where('role_id','=', 9)
     
     ->get();
-    // foreach ($user as $users) {
-    //   $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
-    //   $user['user_details']=$user_detail;
-    // };
+    foreach ($user as $users) {
+      $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
+      $user['user_details']=$user_detail;
+    };
     
     
 
