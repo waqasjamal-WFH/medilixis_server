@@ -339,5 +339,30 @@ class restfulModel extends Model
 
   //.......................add tranco admin model end here............................
 
+
+
+  //.......................get tranco admin model start here............................
+
+  public function get_tranco_admin_model($data){
+
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*', 'userdetails.id as userdetail_ID', 'userdetails.*','nav_permission.id as permission_ID', 'nav_permission.*')
+    ->join('userdetails', 'users.id', '=', 'userdetails.user_id')
+    ->join('nav_permission', 'users.id', '=', 'nav_permission.user_id')
+    ->where('role_id','=', 9)
+    
+    ->get();
+     // $list = DB::table('company')->get();
+    print_r($user)
+    // if($user){
+    //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    // }else{
+    //     return array('result'=>"false", 'token'=>$data->token);
+    // }
+  }
+
+
+  //.......................get tranco admin model end here..............................
+
   //.....................edit selected company model end here....................
 }
