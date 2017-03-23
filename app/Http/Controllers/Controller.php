@@ -458,36 +458,36 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
         
-        // $authenticate=$this->auth_token($data->token);
+        $authenticate=$this->auth_token($data->token);
 
-        // if($authenticate['result']=="true"){
+        if($authenticate['result']=="true"){
 
             $return=$model->get_tranco_admin_model($data);
-            // return $return;
-            // if($return['result']=="true"){
-            //     $response = json_encode(array(
-            //         "status" => "success",
-            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-            //         "data" => $return['data']
-            //     ));
-            //     return $response;
-            // }else{
-            //     $response = json_encode(array(
-            //         "status" => "fail",
-            //         "error" =>array("type"=>"sql", "message"=>"unsuccessful to add tranco admin") ,
+            
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "data" => $return['data']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get tranco admin") ,
 
-            //     ));
+                ));
 
-            //     return $response;
-            // };
-        // }else{
-        //     $response = json_encode(array(
-        //         "status" => "fail",
-        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
-        //     ));
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
 
-        //     return $response;
-        // }    
+            return $response;
+        }    
     }
 
     //...............................list tranco admin api end here........................................

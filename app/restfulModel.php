@@ -367,15 +367,13 @@ class restfulModel extends Model
       $users->user_company=$user_comapanies;
     };
     
-    
 
-     // $list = DB::table('company')->get();
-    print_r(json_encode($user));
-    // if($user){
-    //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
-    // }else{
-    //     return array('result'=>"false", 'token'=>$data->token);
-    // }
+    
+    if($user){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
   }
 
 
