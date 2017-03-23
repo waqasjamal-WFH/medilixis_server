@@ -344,7 +344,7 @@ class restfulModel extends Model
   //.......................get tranco admin model start here............................
 
   public function get_tranco_admin_model($data){
-
+    $data=array();
     $user = DB::table('users')
     ->select('users.id as userID','users.*','nav_permission.id as permission_ID', 'nav_permission.*')
     ->join('nav_permission', 'users.id', '=', 'nav_permission.user_id')
@@ -353,7 +353,7 @@ class restfulModel extends Model
     ->get();
     foreach ($user as $users) {
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
-      $user['user_details']=$user_detail;
+      $users['user_details']=$user_detail;
     };
     
     
