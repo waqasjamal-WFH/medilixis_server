@@ -346,11 +346,17 @@ class restfulModel extends Model
   public function get_tranco_admin_model($data){
     $data=array();
     $user = DB::table('users')
-    ->select('users.id as userID','users.*','nav_permission.id as permission_ID', 'nav_permission.*')
-    ->join('nav_permission', 'users.id', '=', 'nav_permission.user_id')
+    ->select('users.id as userID','users.*')
+    
     ->where('role_id','=', 9)
     
     ->get();
+
+    foreach ($user as $users) {
+      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+      $users->nav_permissions=$nav_permission;
+    };
+
     foreach ($user as $users) {
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
       $users->user_details=$user_detail;
