@@ -353,7 +353,7 @@ class restfulModel extends Model
     ->get();
     foreach ($user as $users) {
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
-      $users['user_details']=$user_detail;
+      $users->user_details=$user_detail;
     };
     
     
