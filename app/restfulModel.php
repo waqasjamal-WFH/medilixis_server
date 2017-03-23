@@ -361,11 +361,16 @@ class restfulModel extends Model
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
       $users->user_details=$user_detail;
     };
+
+    foreach ($user as $users) {
+      $user_comapanies = DB::table('user_comapany')->where('user_id','=', $users->userID)->get();
+      $users->user_comapany=$user_comapanies;
+    };
     
     
 
      // $list = DB::table('company')->get();
-    print_r($user);
+    print_r(json_encode($user));
     // if($user){
     //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
     // }else{
