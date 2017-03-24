@@ -351,13 +351,7 @@ class restfulModel extends Model
     ->where('role_id','=', 9)
     
     ->get();
-
-    foreach ($user as $users) {
-      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-      $users->nav_permissions=$nav_permission;
-    };
-
-    foreach ($user as $users) {
+      foreach ($user as $users) {
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
       foreach ($user_detail as $value) {
         if($value->key_name=="last_name"){
@@ -383,11 +377,18 @@ class restfulModel extends Model
       // $users->user_details=$user_detail;
     };
 
-    // foreach ($user as $users) {
-    //   $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-    //   $users->user_company=$user_comapanies;
-    // };
-    
+
+    foreach ($user as $users) {
+      $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
+      foreach ($user_comapanies as $company) {
+        $users->companies=implode(" //>> ", $company->company_short_name);
+      }
+      // $users->user_company=$user_comapanies;
+    };
+    foreach ($user as $users) {
+      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+      $users->nav_permissions=$nav_permission;
+    };
 
     
     if($user){
