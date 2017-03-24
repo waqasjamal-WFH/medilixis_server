@@ -363,24 +363,20 @@ class restfulModel extends Model
         if($value->key_name=="last_name"){
           $users->last_name=$value->key_value;
         };
-
-        if($value->key_name=="last_name"){
-          $users->last_name=$value->key_value;
-        };
         if($value->key_name=="address"){
-          $users->last_name=$value->key_value;
+          $users->address=$value->key_value;
         };
         if($value->key_name=="phone_number"){
-          $users->last_name=$value->key_value;
+          $users->phone_number=$value->key_value;
         };
         if($value->key_name=="state"){
-          $users->last_name=$value->key_value;
+          $users->state=$value->key_value;
         };
         if($value->key_name=="country"){
-          $users->last_name=$value->key_value;
+          $users->country=$value->key_value;
         };
         if($value->key_name=="city"){
-          $users->last_name=$value->key_value;
+          $users->city=$value->key_value;
         };
       };
 
