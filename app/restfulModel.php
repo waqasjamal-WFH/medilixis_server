@@ -380,9 +380,12 @@ class restfulModel extends Model
 
     foreach ($user as $users) {
       $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-      // foreach ($user_comapanies as $company) {
-        $users->companies=implode(" ", $user_comapanies->company_short_name);
-      // };
+
+      foreach ($user_comapanies as $company) {
+        $arr[] = $user_comapanies->company_short_name;
+        // $users->companies=implode(" ", $user_comapanies->company_short_name);
+      };
+      print_r($arr);
       // $users->user_company=$user_comapanies;
     };
     foreach ($user as $users) {
