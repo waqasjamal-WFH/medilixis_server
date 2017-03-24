@@ -392,6 +392,14 @@ $arr=array();
 
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+      $arr=array();
+      foreach ($nav_permission[0] as $key => $value) {
+        if($value== "1"){
+          $arr[]=$key;
+          $users->permission=implode("<<>>", $arr);
+        };
+      };
+      print_r($arr);
       $users->nav_permissions=$nav_permission;
     };
 
