@@ -377,17 +377,18 @@ class restfulModel extends Model
       // $users->user_details=$user_detail;
     };
 
-
+$arr=array();
     foreach ($user as $users) {
       $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-      $arr=array();
+      
       foreach ($user_comapanies as $company) {
         $arr[] = $company->company_short_name;
         // $users->companies=implode(" ", $user_comapanies->company_short_name);
       };
-      print_r($arr);
+      
       // $users->user_company=$user_comapanies;
     };
+    print_r($arr);
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $users->nav_permissions=$nav_permission;
