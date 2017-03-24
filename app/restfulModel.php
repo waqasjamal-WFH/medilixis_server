@@ -359,13 +359,19 @@ class restfulModel extends Model
 
     foreach ($user as $users) {
       $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
-      $users->user_details=$user_detail;
+      foreach ($user_detail as $value) {
+        if($value->key_name=="last_name"){
+          $users->last_name=$value->key_value;
+        };
+      };
+
+      // $users->user_details=$user_detail;
     };
 
-    foreach ($user as $users) {
-      $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-      $users->user_company=$user_comapanies;
-    };
+    // foreach ($user as $users) {
+    //   $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
+    //   $users->user_company=$user_comapanies;
+    // };
     
 
     
