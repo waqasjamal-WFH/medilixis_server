@@ -383,7 +383,7 @@ $arr=array();
       $arr=array();
       foreach ($user_comapanies as $company) {
         $arr[] = $company->company_short_name;
-        $users->companies=implode("//>>", $arr);
+        $users->companies=implode(">>", $arr);
 
       };
       // print_r($arr);
