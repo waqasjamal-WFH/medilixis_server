@@ -17,11 +17,7 @@ use App\restfulModel;
 use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
 {
-    public function hello(){
-    	$results = DB::select("SELECT * FROM users");
-    	 print_r( json_encode($results));
-
-    }
+   
 
     public function auth_token($data){
         $id=DB::table('users')->select('id')->where('token','=',$data)->first();

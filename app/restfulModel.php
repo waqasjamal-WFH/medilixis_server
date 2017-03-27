@@ -151,7 +151,29 @@ class restfulModel extends Model
           ]);
 
       }
-      return array('result'=>"true", 'token'=>$keyvalue["token"]);
+
+      // fetch data again after updating token
+      $newuser = DB::table('users')
+      ->join('roles', 'roles.id', '=', 'users.role_id')
+      // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
+      ->where('token','=', $data->token)
+      // ->where('password','=', md5($data->password))
+      ->first();
+
+      //fetch user complete data from user details table
+
+      $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
+      // print_r($user_detail) ;
+      foreach ($user_detail as $key => $value) {
+        $user_details[$value->key_name]=$value->key_value;
+
+      };
+
+      if(isset($user_detail) || isset($newuser) ){
+        return array('result'=>"true", 'token'=>$data->token,'data'=> $newuser, 'user_detail'=>$user_details );
+      }else{
+        return array('result'=>"false");
+      };
   }
     
     
