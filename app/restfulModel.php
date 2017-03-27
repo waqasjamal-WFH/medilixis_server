@@ -162,7 +162,7 @@ class restfulModel extends Model
 
       //fetch user complete data from user details table
 
-      $user_detail= DB::table('userdetails')->where('user_id', '=', $user->userID)->get();
+      $user_detail= DB::table('userdetails')->where('user_id', '=', $newuser->id)->get();
       // print_r($user_detail) ;
       foreach ($user_detail as $key => $value) {
         $user_details[$value->key_name]=$value->key_value;
