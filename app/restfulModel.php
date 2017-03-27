@@ -85,7 +85,8 @@ class restfulModel extends Model
       ->update(['token' => $token]);
           // fetch data again after updating token
       $newuser = DB::table('users')
-      ->join('roles', 'roles.id', '=', 'users.role_id')
+      ->select('users.id as userID','users.*', 'roles.id as roleID', 'roles.*')
+      ->join('roles', 'users.role_id', '=', 'roles.id')
       // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
       ->where('email','=', $data->email)
       ->where('password','=', md5($data->password))
