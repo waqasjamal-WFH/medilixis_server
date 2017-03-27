@@ -414,15 +414,15 @@ $arr=array();
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
-      foreach ($nav_permission as $key => $value) {
-        // if($value== "1"){
-        //   $arrr[]=$key;
-        //   $users->permission=implode(">>>", $arrr);
-        // };
+      foreach ($nav_permission[0] as $key => $value) {
+        if($value== "1"){
+          $arrr[]=$key;
+          $users->permission=implode(">>>", $arrr);
+        };
         // print_r($key);
         // print_r($value);
       };
-      print_r($nav_permission);
+      print_r($arrr);
       // $users->nav_permissions=$nav_permission;
     };
 // print_r($nav_permission);
