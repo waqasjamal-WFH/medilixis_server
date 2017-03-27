@@ -416,18 +416,19 @@ $arr=array();
       $arrr=array();
       $nav_object=$nav_permission;
       $users->permission=implode(">>>", $nav_permission);
-      // foreach ($nav_object as $key => $value) {
-      //   if($value== "1"){
-      //     $arrr[]=$key;
-      //     $users->permission=implode(">>>", $arrr);
-      //   };
-      //   // print_r($key);
-      //   // print_r($value);
-      // };
+      foreach ($nav_permission as $key => $value) {
+        echo "$key => $value\n";
+        // if($value== "1"){
+        //   $arrr[]=$key;
+        //   $users->permission=implode(">>>", $arrr);
+        // };
+        // print_r($key);
+        // print_r($value);
+      };
       // print_r($arrr);
       // $users->nav_permissions=$nav_permission;
     };
-var_dump($users);
+// var_dump($users);
     
     // if($user){
     //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
