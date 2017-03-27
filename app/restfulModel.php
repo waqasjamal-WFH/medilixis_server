@@ -134,23 +134,16 @@ class restfulModel extends Model
       }
 
 //        return $keyvalue;
-      $lastid= DB::table('users')->where('token' , $keyvalue["token"])->update([
-          'username' => $keyvalue['data']->username, 'password' => md5($keyvalue['data']->password), 'email' => $keyvalue['data']->email
+      $lastid= DB::table('users')->where('token' , $data->token)->update([
+          'username' => $keyvalue['username']
       ]);
 
-      unset($keyvalue['data']->username);
-      unset($keyvalue['data']->password);
-      unset($keyvalue['data']->email);
-      unset($keyvalue['password']);
-      unset($keyname['email']);
-      unset($keyvalue['email']);
-
-      foreach($keyvalue['data'] as $kn=>$kv){
-          DB::table('userdetails')->where('user_id' , $keyvalue["userid"])->where('key_name' , $kn)->update([
-               'key_value' => $keyvalue['data']->$kn
-          ]);
-
-      }
+        unset($keyname['username']);
+        unset($keyvalue['username']);
+        unset($keyname['password']);
+        unset($keyvalue['password']);
+        unset($keyname['email']);
+        unset($keyvalue['email']);
 
       // fetch data again after updating token
       $newuser = DB::table('users')
@@ -159,6 +152,17 @@ class restfulModel extends Model
       ->where('token','=', $data->token)
       // ->where('password','=', md5($data->password))
       ->first();
+
+        
+
+      foreach($keyname as $kn=>$kv){
+          DB::table('userdetails')->where('user_id' , $newuser->id)->where('key_name' , $kn)->update([
+               'key_value' => $keyvalue[$kv]
+          ]);
+
+      }
+
+     
 
       //fetch user complete data from user details table
 
