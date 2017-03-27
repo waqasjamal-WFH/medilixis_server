@@ -415,7 +415,7 @@ $arr=array();
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
       $nav_object=$nav_permission;
-      $users->permission=implode(">>>", $nav_permission);
+      // $users->permission=implode(">>>", $nav_permission);
       foreach ($nav_permission as $key => $value) {
         echo "$key => $value\n";
         // if($value== "1"){
