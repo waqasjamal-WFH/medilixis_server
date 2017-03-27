@@ -414,7 +414,7 @@ $arr=array();
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
-      $nav_object=$nav_permission[0];
+      $nav_object=$nav_permission->0;
       foreach ($nav_object as $key => $value) {
         if($value== "1"){
           $arrr[]=$key;
