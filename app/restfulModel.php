@@ -414,7 +414,7 @@ $arr=array();
       $arrr=array();
       
       // print_r(get_object_vars($nav_permission[0]));
-      if($nav_permission[0]){
+      if(isset($nav_permission[0])){
         $nav_array=get_object_vars($nav_permission[0]);
         // $users->permission=implode(">>>", $nav_permission);
         foreach ($nav_array as $key => $value) {
