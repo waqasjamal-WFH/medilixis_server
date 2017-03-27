@@ -407,37 +407,27 @@ $arr=array();
         $users->companies=implode(">>", $arr);
 
       };
-      // print_r($arr);
-      // $users->user_company=$user_comapanies;
     };
 
-    // foreach ($user as $users) {
-      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-      // print_r($nav_permission);
-      $arrr=array();
-      
-      // print_r(get_object_vars($nav_permission[0]));
-      $nav_array=get_object_vars($nav_permission[0]);
-      // $users->permission=implode(">>>", $nav_permission);
-      foreach ($nav_array as $key => $value) {
-       
-        if($value== "1"){
-          $arrr[]=$key;
-          $users->permission=implode(">>>", $arrr);
-        };
-        // print_r($key);
-        // print_r($value);
-      };
-      print_r($arrr);
-      // $users->nav_permissions=$nav_permission;
-    // };
-// var_dump($users);
+    $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+    $arrr=array();
     
-    // if($user){
-    //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
-    // }else{
-    //     return array('result'=>"false", 'token'=>$data->token);
-    // }
+    // print_r(get_object_vars($nav_permission[0]));
+    $nav_array=get_object_vars($nav_permission[0]);
+    // $users->permission=implode(">>>", $nav_permission);
+    foreach ($nav_array as $key => $value) {
+     
+      if($value== "1"){
+        $arrr[]=$key;
+        $users->permission=implode(">>>", $arrr);
+      };
+    };
+    
+    if($user){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
   }
 
 
