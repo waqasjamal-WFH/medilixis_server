@@ -170,7 +170,7 @@ class restfulModel extends Model
       };
 
       if(isset($user_detail) || isset($newuser) ){
-        return array('result'=>"true", 'token'=>$data->token,'data'=> $newuser, 'user_detail'=>$user_details );
+        return array('result'=>"true", 'token'=>$data->token,'userdata'=> $newuser, 'user_detail'=>$user_details );
       }else{
         return array('result'=>"false");
       };
