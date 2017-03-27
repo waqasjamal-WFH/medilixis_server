@@ -411,23 +411,25 @@ $arr=array();
       // $users->user_company=$user_comapanies;
     };
 
-    foreach ($user as $users) {
+    // foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-      $arrr=array();
-      $nav_object=$nav_permission;
+      print_r($nav_permission);
+      // $arrr=array();
+      
+      // print_r(get_object_vars($nav_permission[0]));
       // $users->permission=implode(">>>", $nav_permission);
-      foreach ($nav_permission as $key => $value) {
-        echo "$key => $value\n";
-        // if($value== "1"){
-        //   $arrr[]=$key;
-        //   $users->permission=implode(">>>", $arrr);
-        // };
-        // print_r($key);
-        // print_r($value);
-      };
+      // foreach ($nav_permission as $key => $value) {
+      //   echo "$key => $value\n";
+      //   // if($value== "1"){
+      //   //   $arrr[]=$key;
+      //   //   $users->permission=implode(">>>", $arrr);
+      //   // };
+      //   // print_r($key);
+      //   // print_r($value);
+      // };
       // print_r($arrr);
       // $users->nav_permissions=$nav_permission;
-    };
+    // };
 // var_dump($users);
     
     // if($user){
