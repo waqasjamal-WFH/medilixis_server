@@ -413,10 +413,10 @@ $arr=array();
 
     // foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-      print_r($nav_permission);
+      // print_r($nav_permission);
       // $arrr=array();
       
-      // print_r(get_object_vars($nav_permission[0]));
+      print_r(get_object_vars($nav_permission[0]));
       // $users->permission=implode(">>>", $nav_permission);
       // foreach ($nav_permission as $key => $value) {
       //   echo "$key => $value\n";
