@@ -124,60 +124,55 @@ class restfulModel extends Model
    
    
   public function userUpdate_model($data){
-      $keyname=[];
-      $keyvalue=[];
-      $i=0;
-      foreach($data as $key=>$va){
-          $keyname[$key]=$key;
-          $keyvalue[$key]=$va;
-          $i++;
-      }
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    }
+    //updating data in users table
+    $lastid= DB::table('users')->where('token' , $data->token)->update([
+        'username' => $keyvalue['username']
+    ]);
 
-//        return $keyvalue;
-      $lastid= DB::table('users')->where('token' , $data->token)->update([
-          'username' => $keyvalue['username']
-      ]);
+    unset($keyname['username']);
+    unset($keyvalue['username']);
+    unset($keyname['password']);
+    unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
 
-        unset($keyname['username']);
-        unset($keyvalue['username']);
-        unset($keyname['password']);
-        unset($keyvalue['password']);
-        unset($keyname['email']);
-        unset($keyvalue['email']);
+    // fetch data again after updating username
+    $newuser = DB::table('users')
+    ->where('token','=', $data->token)
+    ->first();
 
-      // fetch data again after updating token
-      $newuser = DB::table('users')
-      // ->join('roles', 'roles.id', '=', 'users.role_id')
-      // ->join('userdetails', 'userdetails.user_id', '=', 'users.id')
-      ->where('token','=', $data->token)
-      // ->where('password','=', md5($data->password))
-      ->first();
+    // updating all the remaining data to user details table 
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->where('user_id' , $newuser->id)->where('key_name' , $kn)->update([
+             'key_value' => $keyvalue[$kv]
+        ]);
 
-        
+    }
 
-      foreach($keyname as $kn=>$kv){
-          DB::table('userdetails')->where('user_id' , $newuser->id)->where('key_name' , $kn)->update([
-               'key_value' => $keyvalue[$kv]
-          ]);
+   
 
-      }
+    //fetch user complete data from user details table
 
-     
+    $user_detail= DB::table('userdetails')->where('user_id', '=', $newuser->id)->get();
+    // print_r($user_detail) ;
+    foreach ($user_detail as $key => $value) {
+      $user_details[$value->key_name]=$value->key_value;
 
-      //fetch user complete data from user details table
+    };
 
-      $user_detail= DB::table('userdetails')->where('user_id', '=', $newuser->id)->get();
-      // print_r($user_detail) ;
-      foreach ($user_detail as $key => $value) {
-        $user_details[$value->key_name]=$value->key_value;
-
-      };
-
-      if(isset($user_detail) || isset($newuser) ){
-        return array('result'=>"true", 'token'=>$data->token,'userdata'=> $newuser, 'user_detail'=>$user_details );
-      }else{
-        return array('result'=>"false");
-      };
+    if(isset($user_detail) || isset($newuser) ){
+      return array('result'=>"true", 'token'=>$data->token,'userdata'=> $newuser, 'user_detail'=>$user_details );
+    }else{
+      return array('result'=>"false");
+    };
   }
     
     
@@ -418,15 +413,15 @@ $arr=array();
 
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-      $arr=array();
+      $arrr=array();
       foreach ($nav_permission as $key => $value) {
         if($value== "1"){
-          $arr[]=$key;
-          $users->permission=implode("<<>>", $arr);
+          $arrr[]=$key;
+          $users->permission=implode("<<>>", $arrr);
         };
       };
-      print_r($arr);
-      $users->nav_permissions=$nav_permission;
+      print_r($arrr);
+      // $users->nav_permissions=$nav_permission;
     };
 
     
