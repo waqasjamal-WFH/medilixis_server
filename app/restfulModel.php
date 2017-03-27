@@ -414,15 +414,17 @@ $arr=array();
       $arrr=array();
       
       // print_r(get_object_vars($nav_permission[0]));
-      $nav_array=get_object_vars($nav_permission[0]);
-      // $users->permission=implode(">>>", $nav_permission);
-      foreach ($nav_array as $key => $value) {
-       
-        if($value== "1"){
-          $arrr[]=$key;
-          $users->permission=implode(">>>", $arrr);
+      if($nav_permission[0]){
+        $nav_array=get_object_vars($nav_permission[0]);
+        // $users->permission=implode(">>>", $nav_permission);
+        foreach ($nav_array as $key => $value) {
+         
+          if($value== "1"){
+            $arrr[]=$key;
+            $users->permission=implode(">>>", $arrr);
+          };
         };
-      };
+      }  
     }
     if($user){
         return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
