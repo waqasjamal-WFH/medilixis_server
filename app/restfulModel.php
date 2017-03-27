@@ -414,19 +414,19 @@ $arr=array();
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
-      $nav_object=$nav_permission->0;
-      foreach ($nav_object as $key => $value) {
-        if($value== "1"){
-          $arrr[]=$key;
-          $users->permission=implode(">>>", $arrr);
-        };
-        // print_r($key);
-        // print_r($value);
-      };
-      print_r($arrr);
+      // $nav_object=$nav_permission->0;
+      // foreach ($nav_object as $key => $value) {
+      //   if($value== "1"){
+      //     $arrr[]=$key;
+      //     $users->permission=implode(">>>", $arrr);
+      //   };
+      //   // print_r($key);
+      //   // print_r($value);
+      // };
+      // print_r($arrr);
       // $users->nav_permissions=$nav_permission;
     };
-// var_dump($nav_permission[0]);
+var_dump($nav_permission);
     
     // if($user){
     //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
