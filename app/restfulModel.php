@@ -415,7 +415,7 @@ $arr=array();
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
       $nav_object=$nav_permission;
-      $users->permission=implode(">>>", $nav_permission[0]);
+      $users->permission=implode(">>>", $nav_permission);
       // foreach ($nav_object as $key => $value) {
       //   if($value== "1"){
       //     $arrr[]=$key;
@@ -427,7 +427,7 @@ $arr=array();
       // print_r($arrr);
       // $users->nav_permissions=$nav_permission;
     };
-var_dump($user);
+var_dump($users);
     
     // if($user){
     //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
