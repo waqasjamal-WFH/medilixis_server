@@ -499,24 +499,24 @@ class Controller extends BaseController
 
             $return=$model->forgot_password_model($data);
             
-            // if($return['result']=="true"){
-            //     $response = json_encode(array(
-            //         "status" => "success",
-            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-            //         "data" => $return['message']
-            //     ));
-            //     return $response;
-            // }else{
-            //     $response = json_encode(array(
-            //         "status" => "fail",
-            //         // "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get tranco admin") ,
-            //         "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-            //         "data" => $return['message']
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "data" => $return['message']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    // "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get tranco admin") ,
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "data" => $return['message']
 
-            //     ));
+                ));
 
-            //     return $response;
-            // };
+                return $response;
+            };
 
 
             
