@@ -448,7 +448,7 @@ $arr=array();
     
     ->get();
 
-    print_r($user) ;
+    echo $user[0]->password;
 
     // $to= $data->email;
     // $subject="Forget Password";
