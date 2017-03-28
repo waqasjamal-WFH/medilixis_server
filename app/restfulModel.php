@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 class restfulModel extends Model
 {
-//    protected $table = 'product_list';
+ //    protected $table = 'product_list';
 
     public function crypto_rand_secure($min, $max) {
         $range = $max - $min;
@@ -437,4 +437,17 @@ $arr=array();
   //.......................get tranco admin model end here..............................
 
   //.....................edit selected company model end here....................
+
+  //.................................forget password model api start here.........................
+
+  public function forgot_password_model($data){
+    $to= $data->email;
+    $subject="Forget Password";
+    $message="this is a mail for forget password api";
+    $headers = "From: webmaster@example.com" ;
+
+
+    mail($to,$subject,$message,$headers);
+  }
+  //..............................forget password model api end here.............................
 }
