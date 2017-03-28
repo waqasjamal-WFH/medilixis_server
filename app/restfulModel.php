@@ -470,9 +470,9 @@ $arr=array();
         $headers = "From: webmaster@example.com" ;
 
         $mail=mail($to,$subject,$message,$headers);
-        if($mail == true){
-          echo $mail;
-          // return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
+        if($mail == 1){
+          // echo $mail;
+          return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
         }else{
           return array('result'=>"false", 'token'=>$data->token, 'message'=>"Mail not send");
         }
