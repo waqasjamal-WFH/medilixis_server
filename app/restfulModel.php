@@ -449,39 +449,39 @@ $arr=array();
     $rand = '';
     foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
  
-    echo $rand;
+    // echo $rand;
     
-    // $user = DB::table('users')
-    // ->select('users.id as userID','users.*')
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*')
     
-    // ->where('token','=', $data->token)
+    ->where('email','=', $data->email)
     
-    // ->get();
+    ->get();
 
-    // if($user){
-    //   $updatepass=DB::table('users')->where('token', $data->token)->update([
-    //     'password' =>md5($rand)
-    //   ]);
+    if($user){
+      $updatepass=DB::table('users')->where('id', $data->userID)->update([
+        'password' =>md5($rand)
+      ]);
 
-    //   if($updatepass){
-    //     $to= $data->email;
-    //     $subject="Forget Password";
-    //     $message="this is your new Password " .$rand;
-    //     $headers = "From: Medilixis@example.com" ;
+      if($updatepass){
+        $to= $data->email;
+        $subject="Forget Password";
+        $message="this is your new Password " .$rand;
+        $headers = "From: Medilixis@example.com" ;
 
-    //     // $mail= ;
-    //     if(@mail($to,$subject,$message,$headers) ){
-    //       // echo $mail;
-    //       return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
-    //     }else{
-    //       return array('result'=>"false", 'token'=>$data->token, 'message'=>"Mail not send");
-    //     }
-    //   }else{
-    //     return array('result'=>"false", 'token'=>$data->token, 'message'=>"Password not updated");
-    //   }
-    // }else{
-    //   return array('result'=>"false", 'token'=>$data->token, 'message'=>"Token is incorrect");
-    // }
+        // $mail= ;
+        if(@mail($to,$subject,$message,$headers) ){
+          // echo $mail;
+          return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
+        }else{
+          return array('result'=>"false", 'token'=>$data->token, 'message'=>"Mail not send");
+        }
+      }else{
+        return array('result'=>"false", 'token'=>$data->token, 'message'=>"Password not updated");
+      }
+    }else{
+      return array('result'=>"false", 'token'=>$data->token, 'message'=>"Token is incorrect");
+    }
   }
   //..............................forget password model api end here.............................
 }
