@@ -447,7 +447,7 @@ $arr=array();
     ->where('token','=', $data->token)
     
     ->get();
-
+    print_r($user);
     echo md5($user[0]->password);
 
     // $to= $data->email;
