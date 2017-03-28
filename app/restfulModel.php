@@ -487,71 +487,71 @@ class restfulModel extends Model
   //.............................get selected tranco admin model start here.....................
   public function get_selected_tranco_admin_model($data){
 
-    print_r($data);
-    // $user = DB::table('users')
-    // ->select('users.id as userID','users.*')
+    // print_r($data);
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*')
     
-    // ->where('role_id','=', 9)
+    ->where('id','=', $data->uid)
     
-    // ->get();
-    //   foreach ($user as $users) {
-    //   $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
-    //   foreach ($user_detail as $value) {
-    //     if($value->key_name=="last_name"){
-    //       $users->last_name=$value->key_value;
-    //     };
-    //     if($value->key_name=="address"){
-    //       $users->address=$value->key_value;
-    //     };
-    //     if($value->key_name=="phone_number"){
-    //       $users->phone_number=$value->key_value;
-    //     };
-    //     if($value->key_name=="state"){
-    //       $users->state=$value->key_value;
-    //     };
-    //     if($value->key_name=="country"){
-    //       $users->country=$value->key_value;
-    //     };
-    //     if($value->key_name=="city"){
-    //       $users->city=$value->key_value;
-    //     };
-    //   };
+    ->get();
+      foreach ($user as $users) {
+      $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
+      foreach ($user_detail as $value) {
+        if($value->key_name=="last_name"){
+          $users->last_name=$value->key_value;
+        };
+        if($value->key_name=="address"){
+          $users->address=$value->key_value;
+        };
+        if($value->key_name=="phone_number"){
+          $users->phone_number=$value->key_value;
+        };
+        if($value->key_name=="state"){
+          $users->state=$value->key_value;
+        };
+        if($value->key_name=="country"){
+          $users->country=$value->key_value;
+        };
+        if($value->key_name=="city"){
+          $users->city=$value->key_value;
+        };
+      };
 
-    //   // $users->user_details=$user_detail;
-    // };
+      // $users->user_details=$user_detail;
+    };
 
-    // $arr=array();
-    // foreach ($user as $users) {
-    //   $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-    //   $arr=array();
-    //   foreach ($user_comapanies as $company) {
-    //     $arr[] = $company->company_short_name;
-    //     $users->companies=implode(">>", $arr);
+    $arr=array();
+    foreach ($user as $users) {
+      $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
+      $arr=array();
+      foreach ($user_comapanies as $company) {
+        $arr[] = $company->company_short_name;
+        $users->companies=implode(">>", $arr);
 
-    //   };
-    // };
+      };
+    };
 
-    // foreach ($user as $users) {
-    //   $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
-    //   $arrr=array();
+    foreach ($user as $users) {
+      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+      $arrr=array();
       
-    //   if(isset($nav_permission[0])){
-    //     $nav_array=get_object_vars($nav_permission[0]);
-    //     // $users->permission=implode(">>>", $nav_permission);
-    //     foreach ($nav_array as $key => $value) {
+      if(isset($nav_permission[0])){
+        $nav_array=get_object_vars($nav_permission[0]);
+        // $users->permission=implode(">>>", $nav_permission);
+        foreach ($nav_array as $key => $value) {
          
-    //       if($value== "1"){
-    //         $arrr[]=$key;
-    //         $users->permission=implode(">>>", $arrr);
-    //       };
-    //     };
-    //   }  
-    // }
-    // if($user){
-    //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
-    // }else{
-    //     return array('result'=>"false", 'token'=>$data->token);
-    // }
+          if($value== "1"){
+            $arrr[]=$key;
+            $users->permission=implode(">>>", $arrr);
+          };
+        };
+      }  
+    }
+    if($user){
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
   }
 
   //.............................get selected tranco admin model end here.......................
