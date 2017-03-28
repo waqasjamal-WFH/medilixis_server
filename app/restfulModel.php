@@ -441,14 +441,24 @@ $arr=array();
   //.................................forget password model api start here.........................
 
   public function forgot_password_model($data){
-    $user = DB::table('users')
-    ->select('users.id as userID','users.*')
+
+
+    $seed = str_split('abcdefghijklmnopqrstuvwxyz'
+                     .'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+                     .'0123456789!@#$%^&*()'); // and any other characters
+    shuffle($seed); // probably optional since array_is randomized; this may be redundant
+    $rand = '';
+    foreach (array_rand($seed, 5) as $k) $rand .= $seed[$k];
+ 
+    echo $rand;
+    // $user = DB::table('users')
+    // ->select('users.id as userID','users.*')
     
-    ->where('token','=', $data->token)
+    // ->where('token','=', $data->token)
     
-    ->get();
-    print_r($user);
-    echo md5($user[0]->password);
+    // ->get();
+    // print_r($user);
+    // echo md5($user[0]->password);
 
     // $to= $data->email;
     // $subject="Forget Password";
