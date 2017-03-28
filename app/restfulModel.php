@@ -472,15 +472,15 @@ $arr=array();
         // $mail= ;
         if(@mail($to,$subject,$message,$headers) ){
           // echo $mail;
-          return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
+          return array('result'=>"true" ,'message'=>"Mail send successfully");
         }else{
-          return array('result'=>"false", 'token'=>$data->token, 'message'=>"Mail not send");
+          return array('result'=>"false", 'message'=>"Mail not send");
         }
       }else{
-        return array('result'=>"false", 'token'=>$data->token, 'message'=>"Password not updated");
+        return array('result'=>"false", 'message'=>"Password not updated");
       }
     }else{
-      return array('result'=>"false", 'token'=>$data->token, 'message'=>"Token is incorrect");
+      return array('result'=>"false",  'message'=>"Token is incorrect");
     }
   }
   //..............................forget password model api end here.............................
