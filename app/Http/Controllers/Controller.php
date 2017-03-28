@@ -490,8 +490,8 @@ class Controller extends BaseController
 
     //....................forget password api for mobile app  start here.....................................
     public function forgot_password(){
-        // $model = new restfulModel();
-        // $data = json_decode(file_get_contents("php://input"));
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
         
         // $authenticate=$this->auth_token($data->token);
 
