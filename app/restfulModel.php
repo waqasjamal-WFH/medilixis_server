@@ -469,8 +469,8 @@ $arr=array();
         $message="this is your new Password " .$rand;
         $headers = "From: webmaster@example.com" ;
 
-        // $mail=;
-        if(@mail($to,$subject,$message,$headers)){
+        $mail=mail($to,$subject,$message,$headers);
+        if(!$mail ){
           // echo $mail;
           return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
         }else{
