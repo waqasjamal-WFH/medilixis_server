@@ -448,7 +448,7 @@ $arr=array();
     
     ->get();
 
-    echo $user[0]->password;
+    echo md5($user[0]->password);
 
     // $to= $data->email;
     // $subject="Forget Password";
