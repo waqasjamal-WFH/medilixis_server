@@ -497,7 +497,7 @@ class Controller extends BaseController
 
         // if($authenticate['result']=="true"){
 
-        //     $return=$model->forgot_password_model($data);
+            $return=$model->forgot_password_model($data);
             
         //     if($return['result']=="true"){
         //         $response = json_encode(array(
