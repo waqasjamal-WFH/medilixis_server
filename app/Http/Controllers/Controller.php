@@ -493,38 +493,38 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
         
-        $authenticate=$this->auth_token($data->token);
+        // $authenticate=$this->auth_token($data->token);
 
-        if($authenticate['result']=="true"){
+        // if($authenticate['result']=="true"){
 
-            $return=$model->forgot_password_model($data);
+        //     $return=$model->forgot_password_model($data);
             
-            if($return['result']=="true"){
-                $response = json_encode(array(
-                    "status" => "success",
-                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-                    "data" => $return['message']
-                ));
-                return $response;
-            }else{
-                $response = json_encode(array(
-                    "status" => "fail",
-                    // "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get tranco admin") ,
-                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-                    "data" => $return['message']
+        //     if($return['result']=="true"){
+        //         $response = json_encode(array(
+        //             "status" => "success",
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+        //             "data" => $return['message']
+        //         ));
+        //         return $response;
+        //     }else{
+        //         $response = json_encode(array(
+        //             "status" => "fail",
+        //             // "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get tranco admin") ,
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+        //             "data" => $return['message']
 
-                ));
+        //         ));
 
-                return $response;
-            };
-        }else{
-            $response = json_encode(array(
-                "status" => "fail",
-                "error" =>array("type"=>"authentication error", "message"=>"Token Invalid"),
-            ));
+        //         return $response;
+        //     };
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"authentication error", "message"=>"Token Invalid"),
+        //     ));
 
-            return $response;
-        }    
+        //     return $response;
+        // }    
     }
 
     //....................forget password api for mobile app  end here.....................................
