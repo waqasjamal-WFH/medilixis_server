@@ -441,13 +441,22 @@ $arr=array();
   //.................................forget password model api start here.........................
 
   public function forgot_password_model($data){
-    $to= $data->email;
-    $subject="Forget Password";
-    $message="this is a mail for forget password api";
-    $headers = "From: webmaster@example.com" ;
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*')
+    
+    ->where('token','=', $data->token)
+    
+    ->get();
+
+    echo $user->password;
+
+    // $to= $data->email;
+    // $subject="Forget Password";
+    // $message="this is a mail for forget password api";
+    // $headers = "From: webmaster@example.com" ;
 
 
-    mail($to,$subject,$message,$headers);
+    // mail($to,$subject,$message,$headers);
   }
   //..............................forget password model api end here.............................
 }
