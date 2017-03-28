@@ -471,7 +471,8 @@ $arr=array();
 
         $mail=mail($to,$subject,$message,$headers);
         if($mail == true){
-          return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
+          echo $mail;
+          // return array('result'=>"true", 'token'=>$data->token ,'message'=>"Mail send successfully");
         }else{
           return array('result'=>"false", 'token'=>$data->token, 'message'=>"Mail not send");
         }
