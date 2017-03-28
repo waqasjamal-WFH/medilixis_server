@@ -452,14 +452,14 @@ $arr=array();
     // echo $rand;
     
     $user = DB::table('users')
-    ->select('users.id as userID','users.*')
+    // ->select('users.id as userID','users.*')
     
     ->where('email','=', $data->email)
     
     ->get();
 
     if($user){
-      $updatepass=DB::table('users')->where('id', $data->userID)->update([
+      $updatepass=DB::table('users')->where('id', $data->id)->update([
         'password' =>md5($rand)
       ]);
 
