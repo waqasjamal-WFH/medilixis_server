@@ -548,7 +548,8 @@ class restfulModel extends Model
       }  
     }
     if($user){
-        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+      print_r($user);
+        // return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
     }else{
         return array('result'=>"false", 'token'=>$data->token);
     }
