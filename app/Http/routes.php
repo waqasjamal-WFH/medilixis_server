@@ -36,3 +36,5 @@ $app->post('/editselectedCompany', 'Controller@edit_selected_company');
 $app->post('/addtrancoadmin', 'Controller@add_tranco_admin');
 $app->post('/gettrancoadmin', 'Controller@get_tranco_admin');
 $app->post('/forgetpass', 'Controller@forgot_password');
+
+$app->post('/getselectedtrancoadmin', 'Controller@get_selected_tranco_admin');
