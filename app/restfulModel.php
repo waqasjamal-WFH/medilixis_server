@@ -200,20 +200,21 @@ class restfulModel extends Model
     $oldpasswpord = DB::table('users')->where('password',md5($data->oldpass))->get();
 
     if($oldpasswpord){
-      print_r($oldpasswpord);
+      $update=DB::table('users')
+                ->where('token', $data->token)
+                ->where('password', md5($data->oldpass))
+                ->update(['password' => md5($data->newpass)]);
+      if($update){
+          return array('result'=>"true", 'token'=>$data->token, 'message'=> "Password successfully updated");
+      }else{
+          return array('result'=>"false", 'token'=>$data->token, 'message'=> "Password updated unsuccessfully ");
+      }
+     
     }else{
-      echo (md5($data->oldpass));
+      return array('result'=>"false", 'token'=>$data->token, 'message'=> "Current Password is incorrect");
     };
 
-    // $update=DB::table('users')
-    //             ->where('token', $data->token)
-    //             ->where('password', md5($data->oldpass))
-    //             ->update(['password' => md5($data->newpass)]);
-    // if($update){
-    //     return array('result'=>"true", 'token'=>$data->token);
-    // }else{
-    //     return array('result'=>"false", 'token'=>$data->token);
-    // }
+    
   }
 
   public function add_company_model($data){
