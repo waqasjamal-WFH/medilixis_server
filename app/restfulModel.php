@@ -199,7 +199,7 @@ class restfulModel extends Model
     // print_r($data);
     $oldpasswpord = DB::table('users')->where('password',md5($data->oldpass))->get();
 
-    if($oldpasswpord){
+    // if($oldpasswpord){
       $update=DB::table('users')
                 ->where('token', $data->token)
                 ->where('password', md5($data->oldpass))
@@ -207,12 +207,12 @@ class restfulModel extends Model
       if($update){
           return array('result'=>"true", 'token'=>$data->token, 'message'=> "Password successfully updated");
       }else{
-          return array('result'=>"false", 'token'=>$data->token, 'message'=> "Password updated unsuccessfully ");
+          return array('result'=>"false", 'token'=>$data->token, 'message'=> "Current Password is incorrect");
       }
      
-    }else{
-      return array('result'=>"false", 'token'=>$data->token, 'message'=> "Current Password is incorrect");
-    };
+    // }else{
+    //   return array('result'=>"false", 'token'=>$data->token, 'message'=> "Current Password is incorrect");
+    // };
 
     
   }
