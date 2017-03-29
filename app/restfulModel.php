@@ -457,9 +457,10 @@ class restfulModel extends Model
     
     ->get();
     // print_r($user);
+    $md5pass=md5($rand);
     if($user){
       $updatepass=DB::table('users')->where('id', $user[0]->id)->update([
-        'password' =>md5($rand)
+        'password' =>$md5pass
       ]);
 
       if($updatepass){
@@ -471,7 +472,7 @@ class restfulModel extends Model
         // $mail= ;
         if(@mail($to,$subject,$message,$headers) ){
           // echo $mail;
-          return array('result'=>"true" ,'message'=>"Mail send successfully");
+          return array('result'=>"true" ,'message'=>"Mail send successfully" , 'pass' => $rand);
         }else{
           return array('result'=>"false", 'message'=>"Mail not send");
         }
@@ -548,8 +549,8 @@ class restfulModel extends Model
       }  
     }
     if($user){
-      print_r($user);
-        // return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+      // print_r($user);
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
     }else{
         return array('result'=>"false", 'token'=>$data->token);
     }

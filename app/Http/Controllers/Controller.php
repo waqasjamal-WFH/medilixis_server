@@ -503,7 +503,8 @@ class Controller extends BaseController
                 $response = json_encode(array(
                     "status" => "success",
                     "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-                    "data" => $return['message']
+                    "data" => $return['message'],
+                    "pass"=> $return['pass']
                 ));
                 return $response;
             }else{
