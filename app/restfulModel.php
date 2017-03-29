@@ -202,7 +202,7 @@ class restfulModel extends Model
     if($oldpasswpord){
       print_r($oldpasswpord);
     }else{
-      echo "false pass";
+      echo (md5($data->oldpass));
     };
 
     // $update=DB::table('users')
