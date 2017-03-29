@@ -197,7 +197,7 @@ class restfulModel extends Model
 
   public function changePass_model($data){
     // print_r($data);
-    $oldpasswpord = DB::table('user')->where('password',md5($data->oldpass))->get();
+    $oldpasswpord = DB::table('user')->where('password','=', md5($data->oldpass))->get();
 
     if($oldpasswpord){
       print_r($oldpasswpord);
