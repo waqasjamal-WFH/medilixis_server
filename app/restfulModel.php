@@ -488,7 +488,7 @@ class restfulModel extends Model
   //.............................get selected tranco admin model start here.....................
   public function get_selected_tranco_admin_model($data){
 
-    print_r($data);
+    // print_r($data);
     $user = DB::table('users')
     ->select('users.id as userID','users.*')
     
@@ -524,29 +524,30 @@ class restfulModel extends Model
     $arr=array();
     foreach ($user as $users) {
       $user_comapanies = DB::table('user_company')->where('user_id','=', $users->userID)->get();
-      $arr=array();
-      foreach ($user_comapanies as $company) {
-        $arr[] = $company->company_short_name;
-        $users->companies=implode(">>", $arr);
+      $users->comapanies=$user_comapanies;
+      // $arr=array();
+      // foreach ($user_comapanies as $company) {
+      //   $arr[] = $company->company_short_name;
+      //   $users->companies=implode(">>", $arr);
 
-      };
+      // };
     };
 
     foreach ($user as $users) {
       $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
       $arrr=array();
-      
-      if(isset($nav_permission[0])){
-        $nav_array=get_object_vars($nav_permission[0]);
-        // $users->permission=implode(">>>", $nav_permission);
-        foreach ($nav_array as $key => $value) {
+      $users->permission=$nav_permission;
+      // if(isset($nav_permission[0])){
+      //   $nav_array=get_object_vars($nav_permission[0]);
+      //   // $users->permission=implode(">>>", $nav_permission);
+      //   foreach ($nav_array as $key => $value) {
          
-          if($value== "1"){
-            $arrr[]=$key;
-            $users->permission=implode(">>>", $arrr);
-          };
-        };
-      }  
+      //     if($value== "1"){
+      //       $arrr[]=$key;
+      //       $users->permission=implode(">>>", $arrr);
+      //     };
+      //   };
+      // }  
     }
     if($user){
       // print_r($user);
