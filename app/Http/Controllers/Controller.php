@@ -552,7 +552,7 @@ class Controller extends BaseController
             }else{
                 $response = json_encode(array(
                     "status" => "fail",
-                    "error" =>array("type"=>"sql", "message"=>"No Company Added") ,
+                    "error" =>array("type"=>"sql", "message"=>"No Such User") ,
 
                 ));
 
