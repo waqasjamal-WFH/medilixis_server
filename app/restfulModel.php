@@ -196,15 +196,23 @@ class restfulModel extends Model
     // change pass model api
 
   public function changePass_model($data){
-      $update=DB::table('users')
-                  ->where('token', $data->token)
-                  ->where('password', md5($data->oldpass))
-                  ->update(['password' => md5($data->newpass)]);
-      if($update){
-          return array('result'=>"true", 'token'=>$data->token);
-      }else{
-          return array('result'=>"false", 'token'=>$data->token);
-      }
+    $oldpasswpord = DB::table('user')->where('password',md5($data->oldpass))->get();
+
+    if($oldpasswpord){
+      print_r($oldpasswpord);
+    }else{
+      echo "false pass";
+    };
+
+    // $update=DB::table('users')
+    //             ->where('token', $data->token)
+    //             ->where('password', md5($data->oldpass))
+    //             ->update(['password' => md5($data->newpass)]);
+    // if($update){
+    //     return array('result'=>"true", 'token'=>$data->token);
+    // }else{
+    //     return array('result'=>"false", 'token'=>$data->token);
+    // }
   }
 
   public function add_company_model($data){

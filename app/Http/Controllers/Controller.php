@@ -212,37 +212,37 @@ class Controller extends BaseController
         $model=new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
 
-        $authenticate=$this->auth_token($data->token);
+        // $authenticate=$this->auth_token($data->token);
     //        print_r($authenticate['result']);
-        if($authenticate['result']=="true"){
+        // if($authenticate['result']=="true"){
             $return=$model->changePass_model($data);
-            if($return['result']=="true"){
-                $response = json_encode(array(
-                    "status" => "success",
-                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
-                    "data" => array(
+        //     if($return['result']=="true"){
+        //         $response = json_encode(array(
+        //             "status" => "success",
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+        //             "data" => array(
 
-                    )
-                ));
-                return $response;
-            }else{
-                $response = json_encode(array(
-                    "status" => "fail",
-                    "error" =>array("type"=>"sql", "message"=>"unable to change password") ,
+        //             )
+        //         ));
+        //         return $response;
+        //     }else{
+        //         $response = json_encode(array(
+        //             "status" => "fail",
+        //             "error" =>array("type"=>"sql", "message"=>"unable to change password") ,
 
-                ));
+        //         ));
 
-                return $response;
-            }
-        }else{
-            $response = json_encode(array(
-                "status" => "fail",
-                "error" =>array("type"=>"sql", "message"=>"Token Invalid") ,
+        //         return $response;
+        //     }
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid") ,
 
-            ));
+        //     ));
 
-            return $response;
-        }
+        //     return $response;
+        // }
     }
     //forget password api end
 
