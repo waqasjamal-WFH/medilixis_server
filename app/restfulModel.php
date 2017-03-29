@@ -196,13 +196,14 @@ class restfulModel extends Model
     // change pass model api
 
   public function changePass_model($data){
-    $oldpasswpord = DB::table('user')->where('password',md5($data->oldpass))->get();
+    print_r($data);
+    // $oldpasswpord = DB::table('user')->where('password',md5($data->oldpass))->get();
 
-    if($oldpasswpord){
-      print_r($oldpasswpord);
-    }else{
-      echo "false pass";
-    };
+    // if($oldpasswpord){
+    //   print_r($oldpasswpord);
+    // }else{
+    //   echo "false pass";
+    // };
 
     // $update=DB::table('users')
     //             ->where('token', $data->token)
