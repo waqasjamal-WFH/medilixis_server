@@ -582,9 +582,9 @@ class restfulModel extends Model
         $i++;
     };
     print_r($keyvalue);
-   
-    // $lastid= DB::table('users')->insertGetId([
-    //     'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
+
+    $update= DB::table('users')->where('id' , $keyvalue["userID"])->update([
+        'username' => $keyvalue["first_name"], 'email' => $keyvalue["email"] ]);
     
 
 
