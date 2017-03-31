@@ -581,18 +581,20 @@ class restfulModel extends Model
         $keyvalue[$key]=$va;
         $i++;
     };
-    print_r($keyvalue);
+    
 
     $update= DB::table('users')->where('id' , $keyvalue["userID"])->update([
         'username' => $keyvalue["first_name"], 'email' => $keyvalue["email"] ]);
     
 
+    $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
+    print_r($get_inserted_company);
 
     // $accessright_id= DB::table('nav_permission')->insertGetId([
     //     'user_id' => $lastid]);
     
     // $col=array();
-    // foreach ($data->access_rights as $access_right ) {
+    // foreach ($data['selected_associate_company'] as $access_right ) {
       
     //  $col[$access_right->column_name]= $access_right->status;
     // };
