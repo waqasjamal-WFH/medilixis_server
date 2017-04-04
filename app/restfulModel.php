@@ -590,10 +590,20 @@ class restfulModel extends Model
     $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
     print_r($keyvalue);
 
+    //.... deleting all the previous company of a selected user.........
     foreach ($get_inserted_company as $value) {
          DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
     };
-   
+    
+
+    //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
+    // structure of a database. It cannot be done only by updating query.
+    foreach ($keyvalue['selected_associate_company'] as $associate_companies ) {
+      
+      DB::table('user_company')->insert([
+          'user_id' => $keyvalue["userID"], 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
+      ]);
+    };
 
     // $accessright_id= DB::table('nav_permission')->insertGetId([
     //     'user_id' => $lastid]);
@@ -606,12 +616,7 @@ class restfulModel extends Model
 
     // DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
     // // print_r($col);
-    // foreach ($data->associate_company as $associate_companies ) {
-      
-    //   DB::table('user_company')->insert([
-    //       'user_id' => $lastid, 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
-    //   ]);
-    // };
+    
    
 
 
