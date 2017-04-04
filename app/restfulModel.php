@@ -640,32 +640,32 @@ class restfulModel extends Model
       DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->insert($col);
     };
 
-    // unset($keyname['username']);
-    // unset($keyvalue['username']);
+    unset($keyname['first_name']);
+    unset($keyvalue['first_name']);
     // unset($keyname['password']);
     // unset($keyvalue['password']);
-    // unset($keyname['email']);
-    // unset($keyvalue['email']);
-    // unset($keyname['token']);
-    // unset($keyvalue['token']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
     // unset($keyname['role_id']);
     // unset($keyvalue['role_id']);
-    // unset($keyname['access_rights']);
-    // unset($keyvalue['access_rights']);
-    // unset($keyname['associate_company']);
-    // unset($keyvalue['associate_company']);
+    unset($keyname['selected_associate_company']);
+    unset($keyvalue['selected_associate_company']);
+    unset($keyname['selected_access_right']);
+    unset($keyvalue['selected_access_right']);
 
-    // foreach($keyname as $kn=>$kv){
-    //     DB::table('userdetails')->insert([
-    //         'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
-    //     ]);
-    // };
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+        ]);
+    };
 
-    // if($lastid){
-    //   return array('result'=>"true");
-    // }else{
-    //   return array('result'=>"false");
-    // };
+    if($keyvalue){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
   }
 
   //......................edit selected admin model end here............................
