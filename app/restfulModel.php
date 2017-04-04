@@ -588,7 +588,7 @@ class restfulModel extends Model
     
 
     $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
-    print_r($keyname);
+    // print_r($keyname);
 
     //.... deleting all the previous company of a selected user.........
     if($get_inserted_company){
