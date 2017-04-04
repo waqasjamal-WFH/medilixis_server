@@ -659,20 +659,20 @@ class restfulModel extends Model
 
     //.... delete all the old user details .....
 
-    // $userdetails_old=DB::table('userdetails')->where('user_id','=', $keyvalue["userID"])->get();
-    // if($userdetails_old){
-    //   foreach ($userdetails_old as $rights) {
-    //      DB::table('userdetails')->where('user_id', '=', $keyvalue["userID"])->delete(); 
-    //   };
-    // };
+    $userdetails_old=DB::table('userdetails')->where('user_id','=', $keyvalue["userID"])->get();
+    if($userdetails_old){
+      foreach ($userdetails_old as $rights) {
+         DB::table('userdetails')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
 
 
 
-    // foreach($keyname as $kn=>$kv){
-    //     DB::table('userdetails')->insert([
-    //         'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
-    //     ]);
-    // };
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+        ]);
+    };
 
     // if($keyvalue){
     //   return array('result'=>"true");
