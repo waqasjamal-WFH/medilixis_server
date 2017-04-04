@@ -596,7 +596,7 @@ class restfulModel extends Model
          DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
       };
     };
-    
+    print_r($keyvalue['selected_associate_company']);
     //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
     // structure of a database. It cannot be done only by updating query.
     if($keyvalue['selected_associate_company']){
@@ -613,7 +613,7 @@ class restfulModel extends Model
     // .........selecting the already assign rights to delete and the to insert the new rights ............
 
     $get_inserted_rights = DB::table('nav_permission')->where('user_id','=', $keyvalue["userID"])->get();
-    print_r($get_inserted_rights);
+    
     
     // //.... deleting all the previous rights of a selected user.........
     // foreach ($get_inserted_rights as $rights) {
