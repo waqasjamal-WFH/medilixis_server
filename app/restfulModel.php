@@ -597,6 +597,7 @@ class restfulModel extends Model
       };
     };
     // print_r($keyvalue['selected_associate_company']);
+    
     //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
     // structure of a database. It cannot be done only by updating query.
     if($keyvalue['selected_associate_company']){
@@ -616,19 +617,33 @@ class restfulModel extends Model
     print_r($get_inserted_rights);
     
     //.... deleting all the previous rights of a selected user.........
-    foreach ($get_inserted_rights as $rights) {
+    if($get_inserted_rights){
+      foreach ($get_inserted_rights as $rights) {
          DB::table('nav_permission')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
     };
+    
 
+
+    
+
+
+    //...... inserting all the new rights of a user in nav_permission table ... deleting and then inserting done because of key value 
+    // structure of a database. It cannot be done only by updating query.
+    
+    if($keyvalue['selected_access_right']){
+      $col=array();
+      foreach ($keyvalue['selected_access_right'] as $access_right ) {
+        
+       $col[$access_right->column_name]= $access_right->status;
+      };
+      DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->update($col);
+    };
 
     // $accessright_id= DB::table('nav_permission')->insertGetId([
     //     'user_id' => $lastid]);
     
-    // $col=array();
-    // foreach ($data['selected_associate_company'] as $access_right ) {
-      
-    //  $col[$access_right->column_name]= $access_right->status;
-    // };
+    
 
     // DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
     // // print_r($col);
