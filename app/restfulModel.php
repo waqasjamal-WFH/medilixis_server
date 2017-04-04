@@ -617,7 +617,7 @@ class restfulModel extends Model
     
     //.... deleting all the previous rights of a selected user.........
     foreach ($get_inserted_rights as $rights) {
-         DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+         DB::table('nav_permission')->where('user_id', '=', $keyvalue["userID"])->delete(); 
     };
 
 
