@@ -588,7 +588,7 @@ class restfulModel extends Model
     
 
     $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
-    print_r($keyvalue);
+    // print_r($keyvalue);
 
     //.... deleting all the previous company of a selected user.........
     foreach ($get_inserted_company as $value) {
@@ -604,6 +604,18 @@ class restfulModel extends Model
           'user_id' => $keyvalue["userID"], 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
       ]);
     };
+
+
+    // .........selecting the already assign rights to delete and the to insert the new rights ............
+
+    $get_inserted_rights = DB::table('nav_permission')->where('user_id','=', $keyvalue["userID"])->get();
+    print_r($get_inserted_rights);
+    
+    // //.... deleting all the previous rights of a selected user.........
+    // foreach ($get_inserted_rights as $rights) {
+    //      DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+    // };
+
 
     // $accessright_id= DB::table('nav_permission')->insertGetId([
     //     'user_id' => $lastid]);
