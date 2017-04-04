@@ -674,11 +674,11 @@ class restfulModel extends Model
         ]);
     };
 
-    // if($keyvalue){
-    //   return array('result'=>"true");
-    // }else{
-    //   return array('result'=>"false");
-    // };
+    if($keyvalue){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
   }
 
   //......................edit selected admin model end here............................
