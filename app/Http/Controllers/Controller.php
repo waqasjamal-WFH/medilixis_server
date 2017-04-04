@@ -584,7 +584,7 @@ class Controller extends BaseController
             if($return['result']=="true"){
                 $response = json_encode(array(
                     "status" => "success",
-                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) 
                     // "data" => array(
                     //     "username" => $data->username,
                     //     "password" => $data->password,
