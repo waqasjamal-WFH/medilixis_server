@@ -591,19 +591,23 @@ class restfulModel extends Model
     // print_r($keyvalue);
 
     //.... deleting all the previous company of a selected user.........
-    foreach ($get_inserted_company as $value) {
+    if($get_inserted_company){
+      foreach ($get_inserted_company as $value) {
          DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
     };
     
-
     //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
     // structure of a database. It cannot be done only by updating query.
-    foreach ($keyvalue['selected_associate_company'] as $associate_companies ) {
+    if($keyvalue['selected_associate_company']){
+      foreach ($keyvalue['selected_associate_company'] as $associate_companies ) {
       
-      DB::table('user_company')->insert([
-          'user_id' => $keyvalue["userID"], 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
-      ]);
+        DB::table('user_company')->insert([
+            'user_id' => $keyvalue["userID"], 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
+        ]);
+      };
     };
+    
 
 
     // .........selecting the already assign rights to delete and the to insert the new rights ............
