@@ -590,6 +590,11 @@ class restfulModel extends Model
     $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
     print_r($get_inserted_company);
 
+    foreach ($get_inserted_company as $value) {
+         DB::table('user_company')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+    };
+   
+
     // $accessright_id= DB::table('nav_permission')->insertGetId([
     //     'user_id' => $lastid]);
     
