@@ -616,12 +616,12 @@ class restfulModel extends Model
     $get_inserted_rights = DB::table('nav_permission')->where('user_id','=', $keyvalue["userID"])->get();
     print_r($get_inserted_rights);
     
-    // //.... deleting all the previous rights of a selected user.........
-    // if($get_inserted_rights){
-    //   foreach ($get_inserted_rights as $rights) {
-    //      DB::table('nav_permission')->where('user_id', '=', $keyvalue["userID"])->delete(); 
-    //   };
-    // };
+    //.... deleting all the previous rights of a selected user.........
+    if($get_inserted_rights){
+      foreach ($get_inserted_rights as $rights) {
+         DB::table('nav_permission')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
     
 
 
@@ -637,7 +637,7 @@ class restfulModel extends Model
         
        $col[$access_right->column_name]= $access_right->status;
       };
-      DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->update($col);
+      DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->insert($col);
     };
 
     // $accessright_id= DB::table('nav_permission')->insertGetId([
