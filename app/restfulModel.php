@@ -670,7 +670,7 @@ class restfulModel extends Model
 
     foreach($keyname as $kn=>$kv){
         DB::table('userdetails')->insert([
-            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$keyvalue["userID"]
         ]);
     };
 
