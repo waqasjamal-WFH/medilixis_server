@@ -637,6 +637,7 @@ class restfulModel extends Model
         
        $col[$access_right->column_name]= $access_right->status;
       };
+       $col['user_id']=$keyvalue["userID"];
       DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->insert($col);
     };
 
