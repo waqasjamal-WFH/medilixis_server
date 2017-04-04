@@ -588,7 +588,7 @@ class restfulModel extends Model
     
 
     $get_inserted_company = DB::table('user_company')->where('user_id','=', $keyvalue["userID"])->get();
-    print_r($keyvalue);
+    print_r($keyname);
 
     //.... deleting all the previous company of a selected user.........
     if($get_inserted_company){
@@ -655,17 +655,30 @@ class restfulModel extends Model
     unset($keyname['selected_access_right']);
     unset($keyvalue['selected_access_right']);
 
-    foreach($keyname as $kn=>$kv){
-        DB::table('userdetails')->insert([
-            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
-        ]);
-    };
 
-    if($keyvalue){
-      return array('result'=>"true");
-    }else{
-      return array('result'=>"false");
-    };
+
+    //.... delete all the old user details .....
+
+    // $userdetails_old=DB::table('userdetails')->where('user_id','=', $keyvalue["userID"])->get();
+    // if($userdetails_old){
+    //   foreach ($userdetails_old as $rights) {
+    //      DB::table('userdetails')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+    //   };
+    // };
+
+
+
+    // foreach($keyname as $kn=>$kv){
+    //     DB::table('userdetails')->insert([
+    //         'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+    //     ]);
+    // };
+
+    // if($keyvalue){
+    //   return array('result'=>"true");
+    // }else{
+    //   return array('result'=>"false");
+    // };
   }
 
   //......................edit selected admin model end here............................
