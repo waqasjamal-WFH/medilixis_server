@@ -785,7 +785,7 @@ class restfulModel extends Model
           $users->city=$value->key_value;
         };
         if($value->key_name=="npi"){
-          $users->city=$value->key_value;
+          $users->npi=$value->key_value;
         };
       };
 
