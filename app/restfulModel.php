@@ -648,6 +648,8 @@ class restfulModel extends Model
     unset($keyvalue['email']);
     unset($keyname['token']);
     unset($keyvalue['token']);
+     unset($keyname['userID']);
+    unset($keyvalue['userID']);
     // unset($keyname['role_id']);
     // unset($keyvalue['role_id']);
     unset($keyname['selected_associate_company']);
