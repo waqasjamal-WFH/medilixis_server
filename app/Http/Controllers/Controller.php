@@ -735,6 +735,50 @@ class Controller extends BaseController
     }
 
     //...........................get selected doctor for edit page api end here.............................
+
+    //......................................edit selected doctor api start here...............................
+
+    public function edit_selected_doctor(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+
+            $return=$model->edit_selected_doctor_model($data);
+            // return $return;
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) 
+                    // "data" => array(
+                    //     "username" => $data->username,
+                    //     "password" => $data->password,
+                    //     "email" =>  $data->email
+                    // )
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to edit doctor") ,
+
+                ));
+
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }    
+    }
+
+    //......................................edit selected doctor api end here.................................
     
     // public function checkSession(){
     //     $sess=Session::get('username');
