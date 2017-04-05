@@ -39,3 +39,6 @@ $app->post('/forgetpass', 'Controller@forgot_password');
 
 $app->post('/getselectedtrancoadmin', 'Controller@get_selected_tranco_admin');
 $app->post('/editselectedtrancoadmin', 'Controller@edit_selected_tranco_admin');
+
+$app->post('/adddoctor', 'Controller@add_doctor');
+
