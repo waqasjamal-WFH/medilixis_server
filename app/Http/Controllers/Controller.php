@@ -656,6 +656,47 @@ class Controller extends BaseController
     }
 
     //......................................add doctor api end here.................................
+
+
+     //..............................list doctor api start here.......................................
+
+    public function get_doctor(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+
+            $return=$model->get_doctor_model($data);
+            
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "data" => $return['data']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get doctor list") ,
+
+                ));
+
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }    
+    }
+
+    //...............................list doctor api end here........................................
     
     // public function checkSession(){
     //     $sess=Session::get('username');

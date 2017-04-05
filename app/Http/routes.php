@@ -41,4 +41,5 @@ $app->post('/getselectedtrancoadmin', 'Controller@get_selected_tranco_admin');
 $app->post('/editselectedtrancoadmin', 'Controller@edit_selected_tranco_admin');
 
 $app->post('/adddoctor', 'Controller@add_doctor');
+$app->post('/getdoctor', 'Controller@get_doctor');
 
