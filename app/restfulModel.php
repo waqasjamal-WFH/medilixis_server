@@ -1024,4 +1024,75 @@ class restfulModel extends Model
   }
 
   //......................edit selected doctor model end here............................
+
+
+  //......................add transcriber model start here.........................
+  public function add_transcriber_model($data){
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
+
+
+    $lastid= DB::table('users')->insertGetId([
+      'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       
+    ]);
+    
+
+
+    $accessright_id= DB::table('nav_permission')->insertGetId([
+      'user_id' => $lastid
+    ]);
+    
+    $col=array();
+    foreach ($data->access_rights as $access_right ) {
+      
+     $col[$access_right->column_name]= $access_right->status;
+    };
+
+    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
+    // print_r($col);
+    foreach ($data->associate_doctors as $associate_doctor ) {
+      
+      DB::table('user_doctor')->insert([
+          'user_id' => $lastid, 'doctor_id' => $associate_doctors->id,'doctor_name'=>$associate_doctors->username
+      ]);
+    };
+   
+
+
+    $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
+    unset($keyname['username']);
+    unset($keyvalue['username']);
+    unset($keyname['password']);
+    unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
+    unset($keyname['role_id']);
+    unset($keyvalue['role_id']);
+    unset($keyname['access_rights']);
+    unset($keyvalue['access_rights']);
+    unset($keyname['associate_doctors']);
+    unset($keyvalue['associate_doctors']);
+
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+        ]);
+    };
+
+    if($lastid){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
+  }
+
+  //.......................add transcriber model end here...........................
 }
