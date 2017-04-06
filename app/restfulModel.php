@@ -1059,7 +1059,7 @@ class restfulModel extends Model
     foreach ($data->associate_doctors as $associate_doctor ) {
       
       DB::table('user_doctor')->insert([
-          'user_id' => $lastid, 'doctor_id' => $associate_doctors->id,'doctor_name'=>$associate_doctors->username
+          'user_id' => $lastid, 'doctor_id' => $associate_doctor->id,'doctor_name'=>$associate_doctor->username
       ]);
     };
    
