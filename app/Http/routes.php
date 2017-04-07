@@ -53,3 +53,4 @@ $app->post('/editselectedtranscriber', 'Controller@edit_selected_transcriber');
 
 $app->post('/addqa', 'Controller@add_qa');
 $app->post('/getqa', 'Controller@get_qa');
+$app->post('/getselectedqa', 'Controller@get_selected_qa');

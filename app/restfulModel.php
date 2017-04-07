@@ -1503,4 +1503,78 @@ class restfulModel extends Model
 
 
   //.......................get qa model end here..............................
+
+  //.............................get selected qa model start here.....................
+  public function get_selected_qa_model($data){
+
+    // print_r($data);
+    $user = DB::table('users')
+    ->select('users.id as userID','users.*')
+    
+    ->where('id','=', $data->uid)
+    
+    ->get();
+      foreach ($user as $users) {
+      $user_detail = DB::table('userdetails')->where('user_id','=', $users->userID)->get();
+      foreach ($user_detail as $value) {
+        if($value->key_name=="last_name"){
+          $users->last_name=$value->key_value;
+        };
+        if($value->key_name=="address"){
+          $users->address=$value->key_value;
+        };
+        if($value->key_name=="phone_number"){
+          $users->phone_number=$value->key_value;
+        };
+        if($value->key_name=="state"){
+          $users->state=$value->key_value;
+        };
+        if($value->key_name=="country"){
+          $users->country=$value->key_value;
+        };
+        if($value->key_name=="city"){
+          $users->city=$value->key_value;
+        };
+      };
+
+      // $users->user_details=$user_detail;
+    };
+
+    $arr=array();
+    foreach ($user as $users) {
+      $user_doctors = DB::table('user_doctor')->where('user_id','=', $users->userID)->get();
+      $users->doctor=$user_doctors;
+      // $arr=array();
+      // foreach ($user_comapanies as $company) {
+      //   $arr[] = $company->company_short_name;
+      //   $users->companies=implode(">>", $arr);
+
+      // };
+    };
+
+    foreach ($user as $users) {
+      $nav_permission = DB::table('nav_permission')->where('user_id','=', $users->userID)->get();
+      $arrr=array();
+      $users->permission=$nav_permission;
+      // if(isset($nav_permission[0])){
+      //   $nav_array=get_object_vars($nav_permission[0]);
+      //   // $users->permission=implode(">>>", $nav_permission);
+      //   foreach ($nav_array as $key => $value) {
+         
+      //     if($value== "1"){
+      //       $arrr[]=$key;
+      //       $users->permission=implode(">>>", $arrr);
+      //     };
+      //   };
+      // }  
+    }
+    if($user){
+      // print_r($user);
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
+  }
+
+  //.............................get selected qa model end here.......................
 }
