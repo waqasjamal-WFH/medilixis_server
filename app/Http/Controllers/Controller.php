@@ -947,6 +947,50 @@ class Controller extends BaseController
 
     //......................................edit selected transcriber api end here.................................
 
+    //......................................add qa api start here...............................
+
+    public function add_qa(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+
+            $return=$model->add_qa_model($data);
+            // return $return;
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    // "data" => array(
+                    //     "username" => $data->username,
+                    //     "password" => $data->password,
+                    //     "email" =>  $data->email
+                    // )
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to add transcriber") ,
+
+                ));
+
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }    
+    }
+
+    //......................................add qa api end here.................................
+
 
     // public function checkSession(){
     //     $sess=Session::get('username');
