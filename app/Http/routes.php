@@ -49,3 +49,4 @@ $app->post('/addtranscriber', 'Controller@add_transcriber');
 
 $app->post('/gettranscriber', 'Controller@get_transcriber');
 $app->post('/getselectedtranscriber', 'Controller@get_selected_transcriber');
+$app->post('/editselectedtranscriber', 'Controller@edit_selected_transcriber');

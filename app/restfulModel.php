@@ -1244,4 +1244,118 @@ class restfulModel extends Model
   }
 
   //.............................get selected transcriber model end here.......................
+
+  //......................edit selected transcriber model start here.........................
+  public function edit_selected_transcriber_model($data){
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
+    
+
+    $update= DB::table('users')->where('id' , $keyvalue["userID"])->update([
+        'username' => $keyvalue["first_name"], 'email' => $keyvalue["email"] ]);
+    
+
+    $get_inserted_company = DB::table('user_doctor')->where('user_id','=', $keyvalue["userID"])->get();
+    // print_r($keyname);
+
+    //.... deleting all the previous company of a selected user.........
+    if($get_inserted_company){
+      foreach ($get_inserted_company as $value) {
+         DB::table('user_doctor')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
+    // print_r($keyvalue['selected_associate_company']);
+    
+    //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
+    // structure of a database. It cannot be done only by updating query.
+    if($keyvalue['selected_associate_doctors']){
+      foreach ($keyvalue['selected_associate_doctors'] as $associate_companies ) {
+      
+        DB::table('user_doctor')->insert([
+            'user_id' => $keyvalue["userID"], 'doctor_id' => $associate_companies->id,'doctor_name'=>$associate_companies->username
+        ]);
+      };
+    };
+    
+
+
+    // .........selecting the already assign rights to delete and the to insert the new rights ............
+
+    $get_inserted_rights = DB::table('nav_permission')->where('user_id','=', $keyvalue["userID"])->get();
+    
+    //.... deleting all the previous rights of a selected user.........
+    if($get_inserted_rights){
+      foreach ($get_inserted_rights as $rights) {
+         DB::table('nav_permission')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
+    
+
+
+    
+
+
+    //...... inserting all the new rights of a user in nav_permission table ... deleting and then inserting done because of key value 
+    // structure of a database. It cannot be done only by updating query.
+    
+    if($keyvalue['selected_access_right']){
+      $col=array();
+      foreach ($keyvalue['selected_access_right'] as $access_right ) {
+        
+       $col[$access_right->column_name]= $access_right->status;
+      };
+       $col['user_id']=$keyvalue["userID"];
+      DB::table('nav_permission')->where('user_id' , $keyvalue["userID"])->insert($col);
+    };
+
+    unset($keyname['first_name']);
+    unset($keyvalue['first_name']);
+    // unset($keyname['password']);
+    // unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
+    //  unset($keyname['userID']);
+    // unset($keyvalue['userID']);
+    // unset($keyname['role_id']);
+    // unset($keyvalue['role_id']);
+    unset($keyname['selected_associate_doctors']);
+    unset($keyvalue['selected_associate_doctors']);
+    unset($keyname['selected_access_right']);
+    unset($keyvalue['selected_access_right']);
+
+
+
+    //.... delete all the old user details .....
+
+    $userdetails_old=DB::table('userdetails')->where('user_id','=', $keyvalue["userID"])->get();
+    if($userdetails_old){
+      foreach ($userdetails_old as $rights) {
+         DB::table('userdetails')->where('user_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
+
+
+
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$keyvalue["userID"]
+        ]);
+    };
+
+    if($keyvalue){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
+  }
+
+  //......................edit selected transcriber model end here............................
 }
