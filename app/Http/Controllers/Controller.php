@@ -1001,7 +1001,7 @@ class Controller extends BaseController
 
         if($authenticate['result']=="true"){
 
-            $return=$model->get_transcriber_model($data);
+            $return=$model->get_qa_model($data);
             
             if($return['result']=="true"){
                 $response = json_encode(array(
