@@ -1160,6 +1160,46 @@ class Controller extends BaseController
     //......................................add nurse api end here.................................
 
 
+    //..............................list nurse api start here.......................................
+
+    public function get_nurse(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+
+            $return=$model->get_nurse_model($data);
+            
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    "data" => $return['data']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get Quality Assurance") ,
+
+                ));
+
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }    
+    }
+
+    //...............................list  nurse api end here........................................
+
     // public function checkSession(){
     //     $sess=Session::get('username');
     //     return $sess;

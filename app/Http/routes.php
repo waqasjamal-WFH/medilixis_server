@@ -57,3 +57,4 @@ $app->post('/getselectedqa', 'Controller@get_selected_qa');
 $app->post('/editselectedqa', 'Controller@edit_selected_qa');
 
 $app->post('/addnurse', 'Controller@add_nurse');
+$app->post('/getnurse', 'Controller@get_nurse');
