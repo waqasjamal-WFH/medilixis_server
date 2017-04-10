@@ -59,3 +59,4 @@ $app->post('/editselectedqa', 'Controller@edit_selected_qa');
 $app->post('/addnurse', 'Controller@add_nurse');
 $app->post('/getnurse', 'Controller@get_nurse');
 $app->post('/getselectednurse', 'Controller@get_selected_nurse');
+$app->post('/editselectednurse', 'Controller@edit_selected_nurse');
