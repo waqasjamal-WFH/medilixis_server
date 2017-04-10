@@ -1200,6 +1200,45 @@ class Controller extends BaseController
 
     //...............................list  nurse api end here........................................
 
+    //...........................get selected nurse for edit page api start here...........................
+    public function get_selected_nurse(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+            $return=$model->get_selected_qa_model($data);
+             
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa"), "token"=>$return['token']) ,
+                    "data" => $return['data']
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"No Such User") ,
+
+                ));
+
+                return $response;
+            }
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }
+
+    }
+
+    //...........................get selected nurse for edit page api end here.............................
+
+
     // public function checkSession(){
     //     $sess=Session::get('username');
     //     return $sess;
