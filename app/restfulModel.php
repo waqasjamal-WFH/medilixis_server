@@ -1740,10 +1740,10 @@ class restfulModel extends Model
     unset($keyvalue['token']);
     unset($keyname['role_id']);
     unset($keyvalue['role_id']);
-    // unset($keyname['access_rights']);
-    // unset($keyvalue['access_rights']);
-    // unset($keyname['associate_company']);
-    // unset($keyvalue['associate_company']);
+    unset($keyname['access_rights']);
+    unset($keyvalue['access_rights']);
+    unset($keyname['associate_company']);
+    unset($keyvalue['associate_company']);
 
     foreach($keyname as $kn=>$kv){
         DB::table('userdetails')->insert([
