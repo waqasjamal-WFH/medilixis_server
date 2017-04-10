@@ -63,3 +63,4 @@ $app->post('/editselectednurse', 'Controller@edit_selected_nurse');
 
 
 $app->post('/addpracticeadmin', 'Controller@add_practice_admin');
+$app->post('/getpracticeadmin', 'Controller@get_practice_admin');
