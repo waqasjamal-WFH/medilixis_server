@@ -1119,42 +1119,42 @@ class Controller extends BaseController
         $model = new restfulModel();
         $data = json_decode(file_get_contents("php://input"));
 
-        print_r($data);
+        // print_r($data);
         
-        // $authenticate=$this->auth_token($data->token);
+        $authenticate=$this->auth_token($data->token);
 
-        // if($authenticate['result']=="true"){
+        if($authenticate['result']=="true"){
 
-        //     $return=$model->add_nurse_model($data);
-        //     // return $return;
-        //     if($return['result']=="true"){
-        //         $response = json_encode(array(
-        //             "status" => "success",
-        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
-        //             // "data" => array(
-        //             //     "username" => $data->username,
-        //             //     "password" => $data->password,
-        //             //     "email" =>  $data->email
-        //             // )
-        //         ));
-        //         return $response;
-        //     }else{
-        //         $response = json_encode(array(
-        //             "status" => "fail",
-        //             "error" =>array("type"=>"sql", "message"=>"unsuccessful to add doctor") ,
+            $return=$model->add_nurse_model($data);
+            // return $return;
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+                    // "data" => array(
+                    //     "username" => $data->username,
+                    //     "password" => $data->password,
+                    //     "email" =>  $data->email
+                    // )
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to add nurse") ,
 
-        //         ));
+                ));
 
-        //         return $response;
-        //     };
-        // }else{
-        //     $response = json_encode(array(
-        //         "status" => "fail",
-        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
-        //     ));
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
 
-        //     return $response;
-        // }    
+            return $response;
+        }    
     }
 
     //......................................add nurse api end here.................................

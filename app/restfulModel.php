@@ -1709,23 +1709,23 @@ class restfulModel extends Model
     
 
 
-    // $accessright_id= DB::table('nav_permission')->insertGetId([
-    //     'user_id' => $lastid]);
+    $accessright_id= DB::table('nav_permission')->insertGetId([
+        'user_id' => $lastid]);
     
-    // $col=array();
-    // foreach ($data->access_rights as $access_right ) {
+    $col=array();
+    foreach ($data->access_rights as $access_right ) {
       
-    //  $col[$access_right->column_name]= $access_right->status;
-    // };
+     $col[$access_right->column_name]= $access_right->status;
+    };
 
-    // DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
+    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
     // // print_r($col);
-    // foreach ($data->associate_company as $associate_companies ) {
+    foreach ($data->associate_doctors as $associate_doctor ) {
       
-    //   DB::table('user_company')->insert([
-    //       'user_id' => $lastid, 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
-    //   ]);
-    // };
+      DB::table('user_doctor')->insert([
+          'user_id' => $lastid, 'doctor_id' => $associate_doctor->id,'doctor_name'=>$associate_doctor->username
+      ]);
+    };
    
 
 
@@ -1742,8 +1742,8 @@ class restfulModel extends Model
     unset($keyvalue['role_id']);
     unset($keyname['access_rights']);
     unset($keyvalue['access_rights']);
-    unset($keyname['associate_company']);
-    unset($keyvalue['associate_company']);
+    unset($keyname['associate_doctors']);
+    unset($keyvalue['associate_doctors']);
 
     foreach($keyname as $kn=>$kv){
         DB::table('userdetails')->insert([
