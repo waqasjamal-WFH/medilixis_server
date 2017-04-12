@@ -42,7 +42,7 @@ class restfulModel extends Model
         }
 
        $lastid= DB::table('users')->insertGetId([
-            'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'token'=>$token,'role_id' =>"1"
+            'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'token'=>$token,'role_id' =>"3"
         ]);
         $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
         unset($keyname['username']);
