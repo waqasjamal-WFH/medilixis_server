@@ -68,4 +68,6 @@ $app->post('/getselectedpracticeadmin', 'Controller@get_selected_practice_admin'
 $app->post('/editselectedpracticeadmin', 'Controller@edit_selected_practice_admin');
 
 $app->post('/addreceptionist', 'Controller@add_receptionist');
+$app->post('/getreceptioniest', 'Controller@get_receptioniest');
+
 
