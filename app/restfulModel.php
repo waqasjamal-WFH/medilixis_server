@@ -2363,4 +2363,80 @@ class restfulModel extends Model
   }
 
   //......................edit selected practice admin model end here............................
+
+  //......................add receptionist model start here.........................
+  public function add_receptionist_model($data){
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
+
+    // //token generate function
+    // $token = "";
+    // $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    // $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+    // $codeAlphabet.= "0123456789";
+    // for($i=0;$i<32;$i++){
+    //     $token .= $codeAlphabet[$this->crypto_rand_secure(0,strlen($codeAlphabet))];
+    // }
+
+    $lastid= DB::table('users')->insertGetId([
+        'username' => $keyvalue["username"], 'password' => md5($keyvalue["password"]), 'email' => $keyvalue["email"],'role_id' =>$keyvalue["role_id"]       ]);
+    
+
+
+    $accessright_id= DB::table('nav_permission')->insertGetId([
+        'user_id' => $lastid]);
+    
+    $col=array();
+    foreach ($data->access_rights as $access_right ) {
+      
+     $col[$access_right->column_name]= $access_right->status;
+    };
+
+    DB::table('nav_permission')->where('id' , $accessright_id)->update($col);
+    // print_r($col);
+    foreach ($data->associate_company as $associate_companies ) {
+      
+      DB::table('user_company')->insert([
+          'user_id' => $lastid, 'company_id' => $associate_companies->id,'company_short_name'=>$associate_companies->short_name
+      ]);
+    };
+   
+
+
+    $token =DB::table('users')->where('id', '=', $lastid)->pluck('token');
+    unset($keyname['username']);
+    unset($keyvalue['username']);
+    unset($keyname['password']);
+    unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
+    unset($keyname['role_id']);
+    unset($keyvalue['role_id']);
+    unset($keyname['access_rights']);
+    unset($keyvalue['access_rights']);
+    unset($keyname['associate_company']);
+    unset($keyvalue['associate_company']);
+
+    foreach($keyname as $kn=>$kv){
+        DB::table('userdetails')->insert([
+            'key_name' => $kn, 'key_value' => $keyvalue[$kv],'user_id'=>$lastid
+        ]);
+    };
+
+    if($lastid){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
+  }
+
+  //.......................add receptionist model end here............................
 }
