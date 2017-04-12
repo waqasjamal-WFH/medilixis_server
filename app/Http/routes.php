@@ -70,5 +70,7 @@ $app->post('/editselectedpracticeadmin', 'Controller@edit_selected_practice_admi
 $app->post('/addreceptionist', 'Controller@add_receptionist');
 $app->post('/getreceptioniest', 'Controller@get_receptioniest');
 $app->post('/getselectedreceptionest', 'Controller@get_selected_receptionist');
+$app->post('/editselectedreceptioniest', 'Controller@edit_selected_receptioniest');
+
 
 

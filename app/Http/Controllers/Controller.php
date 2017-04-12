@@ -1418,7 +1418,8 @@ class Controller extends BaseController
 
         if($authenticate['result']=="true"){
 
-            $return=$model->edit_selected_tranco_admin_model($data);
+
+            $return=$model->edit_selected_practice_admin_model($data);
             // return $return;
             if($return['result']=="true"){
                 $response = json_encode(array(
@@ -1575,6 +1576,50 @@ class Controller extends BaseController
 
 
     //...........................get selected receptionist for edit page api end here.............................
+
+    //......................................edit selected receptioniest api start here...............................
+
+    public function edit_selected_receptioniest(){
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
+        
+        $authenticate=$this->auth_token($data->token);
+
+        if($authenticate['result']=="true"){
+
+            $return=$model->edit_selected_receptionest_model($data);
+            // return $return;
+            if($return['result']=="true"){
+                $response = json_encode(array(
+                    "status" => "success",
+                    "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) 
+                    // "data" => array(
+                    //     "username" => $data->username,
+                    //     "password" => $data->password,
+                    //     "email" =>  $data->email
+                    // )
+                ));
+                return $response;
+            }else{
+                $response = json_encode(array(
+                    "status" => "fail",
+                    "error" =>array("type"=>"sql", "message"=>"unsuccessful to edit receptioniest") ,
+
+                ));
+
+                return $response;
+            };
+        }else{
+            $response = json_encode(array(
+                "status" => "fail",
+                "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+            ));
+
+            return $response;
+        }    
+    }
+
+    //......................................edit selected receptioniest api end here.................................
 
 
     // public function checkSession(){
