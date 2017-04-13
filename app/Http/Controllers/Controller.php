@@ -1670,8 +1670,8 @@ class Controller extends BaseController
     //..............................list patient api start here.......................................
 
     public function get_patient(){
-        // $model = new restfulModel();
-        // $data = json_decode(file_get_contents("php://input"));
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
         
         // $authenticate=$this->auth_token($data->token);
 
