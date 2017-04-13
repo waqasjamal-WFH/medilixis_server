@@ -2764,4 +2764,41 @@ class restfulModel extends Model
 
 
   //.......................get patient model end here..............................
+
+  //.............................get selected patient model start here.....................
+  public function get_selected_patient_model($data){
+
+    // print_r($data);
+    $user = DB::table('patient')
+    ->select('users.id as userID','users.*')
+    
+    ->where('id','=', $data->uid)
+    
+    ->get();
+      
+    $arr=array();
+    foreach ($user as $users) {
+      $user_doctors = DB::table('patientdoctor_relation')->where('patient_id','=', $users->userID)->get();
+      $users->doctor=$user_doctors;
+      // $arr=array();
+      // foreach ($user_comapanies as $company) {
+      //   $arr[] = $company->company_short_name;
+      //   $users->companies=implode(">>", $arr);
+
+      // };
+    };
+
+    
+    if($user){
+      // print_r($user);
+        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    }else{
+        return array('result'=>"false", 'token'=>$data->token);
+    }
+  }
+
+  //.............................get selected patient model end here.......................
+
+
+
 }
