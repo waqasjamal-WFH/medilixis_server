@@ -2770,7 +2770,7 @@ class restfulModel extends Model
 
     // print_r($data);
     $user = DB::table('patient')
-    ->select('users.id as userID','users.*')
+    ->select('patient.id as userID','patient.*')
     
     ->where('id','=', $data->uid)
     
