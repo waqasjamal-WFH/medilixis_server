@@ -2779,13 +2779,13 @@ class restfulModel extends Model
         };
       }
     };
-
+    print_r($user);
     
-    if($user){
-        return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
-    }else{
-        return array('result'=>"false", 'token'=>$data->token);
-    }
+    // if($user){
+    //     return array('result'=>"true", 'token'=>$data->token , 'data'=> $user);
+    // }else{
+    //     return array('result'=>"false", 'token'=>$data->token);
+    // }
   }
 
 
