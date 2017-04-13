@@ -1667,6 +1667,46 @@ class Controller extends BaseController
 
     //......................................add patient api end here.................................
 
+    //..............................list patient api start here.......................................
+
+    public function get_patient(){
+        // $model = new restfulModel();
+        // $data = json_decode(file_get_contents("php://input"));
+        
+        // $authenticate=$this->auth_token($data->token);
+
+        // if($authenticate['result']=="true"){
+
+            $return=$model->get_patient_model($data);
+            
+        //     if($return['result']=="true"){
+        //         $response = json_encode(array(
+        //             "status" => "success",
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) ,
+        //             "data" => $return['data']
+        //         ));
+        //         return $response;
+        //     }else{
+        //         $response = json_encode(array(
+        //             "status" => "fail",
+        //             "error" =>array("type"=>"sql", "message"=>"unsuccessful to Get patient") ,
+
+        //         ));
+
+        //         return $response;
+        //     };
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+        //     ));
+
+        //     return $response;
+        // }    
+    }
+
+    //...............................list  patient api end here........................................
+
 
     // public function checkSession(){
     //     $sess=Session::get('username');

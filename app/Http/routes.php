@@ -73,6 +73,8 @@ $app->post('/getselectedreceptionest', 'Controller@get_selected_receptionist');
 $app->post('/editselectedreceptioniest', 'Controller@edit_selected_receptioniest');
 
 $app->post('/addpatient', 'Controller@add_patient');
+$app->post('/getpatient', 'Controller@get_patient');
+
 
 
 
