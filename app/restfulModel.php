@@ -2700,4 +2700,38 @@ class restfulModel extends Model
   }
 
   //......................edit selected receptionest model end here............................
+
+  //......................add patient model start here.........................
+  public function add_patient_model($data){
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
+
+    $lastid= DB::table('patient')->insertGetId([
+        'first_name' => $keyvalue["username"], 'last_name' => $keyvalue["last_name"], 'date_of_birth' => $keyvalue["dob"],'address' =>$keyvalue["address"] ,'phone' =>$keyvalue["phone_number"],'state' =>$keyvalue["state"],'country' =>$keyvalue["country"],'city' =>$keyvalue["city"]       ]);
+    
+
+
+    
+    foreach ($data->associate_doctors as $associate_doctor ) {
+      
+      DB::table('patientdoctor_relation')->insert([
+          'patient_id' => $lastid, 'doctor_id' => $associate_doctor->userID,'doctor_name'=>$associate_doctor->username
+      ]);
+    };
+   
+
+    if($lastid){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
+  }
+
+  //.......................add patient model end here............................
 }
