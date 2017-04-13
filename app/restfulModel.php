@@ -2766,7 +2766,7 @@ class restfulModel extends Model
       // };
 
       // $users->user_details=$user_detail;
-    };
+    // };
 
     $arr=array();
     foreach ($user as $users) {
