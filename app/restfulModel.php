@@ -2812,7 +2812,7 @@ class restfulModel extends Model
     
 
     $update= DB::table('patient')->where('id' , $keyvalue["userID"])->update([
-        'first_name' => $keyvalue["first_name"], 'date_of_birth' => $keyvalue["do_b"], 'last_name' => $keyvalue["last_name"], 'state' => $keyvalue["st_ate"], 'address' => $keyvalue["ad_dresss"] , 'phone' => $keyvalue["phone__number"], 'city' => $keyvalue["ci_ty"], 'country' => $keyvalue["co_untry"]
+        'first_name' => $keyvalue["first_name"], 'date_of_birth' => $keyvalue["dob"], 'last_name' => $keyvalue["last_name"], 'state' => $keyvalue["state"], 'address' => $keyvalue["address"] , 'phone' => $keyvalue["phone_number"], 'city' => $keyvalue["city"], 'country' => $keyvalue["country"]
         ]);
     
 
