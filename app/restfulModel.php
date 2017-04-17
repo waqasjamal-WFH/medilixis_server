@@ -2713,7 +2713,7 @@ class restfulModel extends Model
     };
 
     $lastid= DB::table('patient')->insertGetId([
-        'first_name' => $keyvalue["username"], 'last_name' => $keyvalue["last_name"], 'date_of_birth' => $keyvalue["dob"],'address' =>$keyvalue["address"] ,'phone' =>$keyvalue["phone_number"],'state' =>$keyvalue["state"],'country' =>$keyvalue["country"],'city' =>$keyvalue["city"]       ]);
+        'first_name' => $keyvalue["username"], 'last_name' => $keyvalue["last_name"], 'date_of_birth' => $keyvalue["dob"],'address' =>$keyvalue["address"] ,'phone' =>$keyvalue["phone_number"],'state' =>$keyvalue["statee"],'country' =>$keyvalue["country"],'city' =>$keyvalue["city"]       ]);
     
 
 
@@ -2798,6 +2798,70 @@ class restfulModel extends Model
   }
 
   //.............................get selected patient model end here.......................
+
+  //......................edit selected patient model start here.........................
+  public function edit_selected_patient_model($data){
+    $keyname=[];
+    $keyvalue=[];
+    $i=0;
+    foreach($data as $key=>$va){
+        $keyname[$key]=$key;
+        $keyvalue[$key]=$va;
+        $i++;
+    };
+    
+
+    $update= DB::table('patient')->where('id' , $keyvalue["userID"])->update([
+        'first_name' => $keyvalue["first_name"], 'date_of_birth' => $keyvalue["do_b"], 'last_name' => $keyvalue["last_name"], 'state' => $keyvalue["st_ate"], 'address' => $keyvalue["ad_dresss"] , 'phone' => $keyvalue["phone__number"], 'city' => $keyvalue["ci_ty"], 'country' => $keyvalue["co_untry"]
+        ]);
+    
+
+    $get_inserted_company = DB::table('patientdoctor_relation')->where('patient_id','=', $keyvalue["userID"])->get();
+    // print_r($keyname);
+
+    //.... deleting all the previous company of a selected user.........
+    if($get_inserted_company){
+      foreach ($get_inserted_company as $value) {
+         DB::table('patientdoctor_relation')->where('patient_id', '=', $keyvalue["userID"])->delete(); 
+      };
+    };
+    // print_r($keyvalue['selected_associate_company']);
+    
+    //...... inserting all the new companies of a user in useer_company table ... deleting and then inserting done because of key value 
+    // structure of a database. It cannot be done only by updating query.
+    if($keyvalue['selected_associate_doctors']){
+      foreach ($keyvalue['selected_associate_doctors'] as $associate_companies ) {
+      
+        DB::table('patientdoctor_relation')->insert([
+            'patient_id' => $keyvalue["userID"], 'doctor_id' => $associate_companies->id,'doctor_name'=>$associate_companies->username
+        ]);
+      };
+    };
+    
+    unset($keyname['first_name']);
+    unset($keyvalue['first_name']);
+    // unset($keyname['password']);
+    // unset($keyvalue['password']);
+    unset($keyname['email']);
+    unset($keyvalue['email']);
+    unset($keyname['token']);
+    unset($keyvalue['token']);
+    //  unset($keyname['userID']);
+    // unset($keyvalue['userID']);
+    // unset($keyname['role_id']);
+    // unset($keyvalue['role_id']);
+    unset($keyname['selected_associate_doctors']);
+    unset($keyvalue['selected_associate_doctors']);
+    
+
+    if($keyvalue){
+      return array('result'=>"true");
+    }else{
+      return array('result'=>"false");
+    };
+  }
+
+  //......................edit selected patient model end here............................
 
 
 
