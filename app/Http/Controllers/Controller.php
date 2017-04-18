@@ -77,7 +77,8 @@ class Controller extends BaseController
                        $return['data'],
                     // Session::get('username')
                 ),
-                      "user_details" => $return['user_detail'],
+                "user_details" => $return['user_detail'],
+                "user_permission" => $return['permission'],
             ));
             return $response;
         }else{

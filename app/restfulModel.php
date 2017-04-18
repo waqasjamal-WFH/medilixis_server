@@ -100,9 +100,10 @@ class restfulModel extends Model
         $user_details[$value->key_name]=$value->key_value;
 
       };
+      $user_permission= DB::table('nav_permission')->where('user_id', '=', $user->userID)->get();
       // print_r($user_details) ; 
 
-      return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_details );
+      return array('result'=>"true", 'token'=>$token,'data'=> $newuser, 'user_detail'=>$user_details ,'permission'=>$user_permission);
     }else{
        return array('result'=>"false");
     }
