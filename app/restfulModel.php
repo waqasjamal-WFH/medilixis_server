@@ -2883,14 +2883,16 @@ class restfulModel extends Model
       //     DB::table('user_company')->where('id', '=', $arraycompany->id)->delete();
       //   };
       //   print_r($get_usercompany);
-      // }  
+      // } 
+
       $get_userdoctor= DB::table('user_doctor')->where('user_id', '=', $data->uid)->get();
       if($get_userdoctor){
         // foreach ($get_userdoctor as $arraydoctor) {
         //   DB::table('user_doctor')->where('id', '=', $arraydoctor->id)->delete();
         // };
-        print_r($get_userdoctor);
-      }
+        // print_r($get_userdoctor);
+      };
+      print_r($get_userdoctor);
     };
 
 
