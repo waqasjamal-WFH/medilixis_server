@@ -2870,7 +2870,7 @@ class restfulModel extends Model
     if($data->uid){   
       // DB::table('users')->where('id', '=', $data->uid)->delete();
 
-      $get_userdetails= DB::table('userdetails')->get();
+      $get_userdetails= DB::table('userdetails')->where('user_id', '=', $data->uid)->get();
       print_r($get_userdetails);
     };
 
