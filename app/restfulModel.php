@@ -2875,7 +2875,8 @@ class restfulModel extends Model
       //   foreach ($get_userdetails as $arraydata) {
       //     DB::table('userdetails')->where('id', '=', $arraydata->id)->delete();
       //   };
-      // };
+      // }else{
+    // };
       
       $get_usercompany= DB::table('user_company')->where('user_id', '=', $data->uid)->get(); 
       // if($get_usercompany){
@@ -2890,9 +2891,11 @@ class restfulModel extends Model
         // foreach ($get_userdoctor as $arraydoctor) {
         //   DB::table('user_doctor')->where('id', '=', $arraydoctor->id)->delete();
         // };
-        // print_r($get_userdoctor);
+        print_r($get_userdoctor);
+      }else{
+        echo "sadasdasdasdasd";
       };
-      print_r($get_userdoctor);
+      // print_r($get_userdoctor);
     };
 
 
