@@ -2877,8 +2877,11 @@ class restfulModel extends Model
       //   };
       // };
       
-      $get_usercompany= DB::table('user_company')->where('user_id', '=', $data->uid)->get();   
-      print_r($get_usercompany);
+      $get_usercompany= DB::table('user_company')->where('user_id', '=', $data->uid)->get(); 
+      if($get_usercompany){
+        print_r($get_usercompany);
+      }  
+      
     };
 
 
