@@ -2868,45 +2868,44 @@ class restfulModel extends Model
 
   public function delete_selected_user_model($data){
     if($data->uid){   
-       // DB::table('users')->where('id', '=', $data->uid)->delete();
+       DB::table('users')->where('id', '=', $data->uid)->delete();
 
       $get_userdetails= DB::table('userdetails')->where('user_id', '=', $data->uid)->get();
-      // if($get_userdetails){
-      //   foreach ($get_userdetails as $arraydata) {
-      //     DB::table('userdetails')->where('id', '=', $arraydata->id)->delete();
-      //   };
-      // }else{
-    // };
+      if($get_userdetails){
+        foreach ($get_userdetails as $arraydata) {
+          DB::table('userdetails')->where('id', '=', $arraydata->id)->delete();
+        };
+      }else{
+      };
       
       $get_usercompany= DB::table('user_company')->where('user_id', '=', $data->uid)->get(); 
-      // if($get_usercompany){
-      //   foreach ($get_usercompany as $arraycompany) {
-      //     DB::table('user_company')->where('id', '=', $arraycompany->id)->delete();
-      //   };
-      //   print_r($get_usercompany);
-      // }else{
-      //   echo "sadasdasdasdasd";
-      // }; 
+      if($get_usercompany){
+        foreach ($get_usercompany as $arraycompany) {
+          DB::table('user_company')->where('id', '=', $arraycompany->id)->delete();
+        };
+        // print_r($get_usercompany);
+      }else{
+        // echo "sadasdasdasdasd";
+      }; 
 
       $get_userdoctor= DB::table('user_doctor')->where('user_id', '=', $data->uid)->get();
-      // if($get_userdoctor){
-        // foreach ($get_userdoctor as $arraydoctor) {
-        //   DB::table('user_doctor')->where('id', '=', $arraydoctor->id)->delete();
-        // };
-      //   print_r($get_userdoctor);
-      // }else{
-      //   echo "sadasdasdasdasd";
-      // };
+      if($get_userdoctor){
+        foreach ($get_userdoctor as $arraydoctor) {
+          DB::table('user_doctor')->where('id', '=', $arraydoctor->id)->delete();
+        };
+        // print_r($get_userdoctor);
+      }else{
+        // echo "sadasdasdasdasd";
+      };
       // print_r($get_userdoctor);
 
       $get_usernavpermission= DB::table('nav_permission')->where('user_id', '=', $data->uid)->get();
       if($get_usernavpermission){
+        DB::table('nav_permission')->where('user_id', '=', $data->uid)->delete();
         
-        //   DB::table('nav_permission')->where('id', '=', $arraydoctor->id)->delete();
-        
-        print_r($get_usernavpermission);
+        // print_r($get_usernavpermission);
       }else{
-        echo "sadasdasdasdasd";
+        // echo "sadasdasdasdasd";
       };
     };
 
