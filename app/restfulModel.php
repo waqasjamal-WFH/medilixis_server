@@ -2907,11 +2907,15 @@ class restfulModel extends Model
       }else{
         // echo "sadasdasdasdasd";
       };
+
+      if($data->uid){
+        return array('result'=>"true");
+      }else{
+        return array('result'=>"false");
+      };
+
     };
-
-
-      
-  }
+  };
 
   //........................delete selected model api end here......................
 
