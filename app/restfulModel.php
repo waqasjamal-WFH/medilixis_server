@@ -2868,9 +2868,14 @@ class restfulModel extends Model
 
   public function delete_selected_user_model($data){
     if($data->uid){   
-      echo $data->uid ;
-    };  
       // DB::table('users')->where('id', '=', $data->uid)->delete();
+
+      $get_userdetails= DB::table('userdetails')->get();
+      print_r($get_userdetails);
+    };
+
+
+      
   }
 
   //........................delete selected model api end here......................
