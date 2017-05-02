@@ -2864,6 +2864,14 @@ class restfulModel extends Model
 
   //......................edit selected patient model end here............................
 
+  //........................delete selected model api start here......................
+
+  public function delete_selected_user_model($data){
+    print_r($data);
+  }
+
+  //........................delete selected model api end here......................
+
 
 
 }

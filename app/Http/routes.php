@@ -77,6 +77,8 @@ $app->post('/getpatient', 'Controller@get_patient');
 $app->post('/getselectedpatient', 'Controller@get_selected_patient');
 $app->post('/editselectedpatient', 'Controller@edit_selected_patient');
 
+$app->post('/deleteuser', 'Controller@delete_selected_user');
+
 
 
 

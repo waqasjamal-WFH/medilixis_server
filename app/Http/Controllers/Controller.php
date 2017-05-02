@@ -1790,6 +1790,52 @@ class Controller extends BaseController
 
     //......................................edit selected patient api end here.................................
 
+    //....................................delete selected user api start here.............................
+
+
+    public function delete_selected_user(){
+        // $model = new restfulModel();
+        // $data = json_decode(file_get_contents("php://input"));
+        
+        // $authenticate=$this->auth_token($data->token);
+
+        // if($authenticate['result']=="true"){
+
+            $return=$model->delete_selected_user_model($data);
+            // return $return;
+        //     if($return['result']=="true"){
+        //         $response = json_encode(array(
+        //             "status" => "success",
+        //             "response" =>array("timestamp"=>date("Y-m-d")." ".date("h:i:sa")) 
+        //             // "data" => array(
+        //             //     "username" => $data->username,
+        //             //     "password" => $data->password,
+        //             //     "email" =>  $data->email
+        //             // )
+        //         ));
+        //         return $response;
+        //     }else{
+        //         $response = json_encode(array(
+        //             "status" => "fail",
+        //             "error" =>array("type"=>"sql", "message"=>"unsuccessful to edit patient") ,
+
+        //         ));
+
+        //         return $response;
+        //     };
+        // }else{
+        //     $response = json_encode(array(
+        //         "status" => "fail",
+        //         "error" =>array("type"=>"sql", "message"=>"Token Invalid"),
+        //     ));
+
+        //     return $response;
+        // }    
+    }
+
+
+    //....................................delete selected user api end here.............................
+
 
     // public function checkSession(){
     //     $sess=Session::get('username');
