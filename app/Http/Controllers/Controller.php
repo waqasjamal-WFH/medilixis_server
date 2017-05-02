@@ -1794,8 +1794,8 @@ class Controller extends BaseController
 
 
     public function delete_selected_user(){
-        // $model = new restfulModel();
-        // $data = json_decode(file_get_contents("php://input"));
+        $model = new restfulModel();
+        $data = json_decode(file_get_contents("php://input"));
         
         // $authenticate=$this->auth_token($data->token);
 
