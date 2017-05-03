@@ -1802,7 +1802,7 @@ class Controller extends BaseController
         // if($authenticate['result']=="true"){
 
             $return=$model->delete_selected_user_model($data);
-            // return $return;
+            print_r($return);
         //     if($return['result']=="true"){
         //         $response = json_encode(array(
         //             "status" => "success",
