@@ -2915,7 +2915,7 @@ class restfulModel extends Model
       };
 
     };
-  };
+  }
 
   //........................delete selected model api end here......................
 
