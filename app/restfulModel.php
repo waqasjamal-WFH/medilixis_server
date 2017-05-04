@@ -2867,7 +2867,8 @@ class restfulModel extends Model
   //........................delete selected model api start here......................
 
   public function delete_selected_user_model($data){
-    if($data->uid){   
+    if($data->uid){  
+    print_r($data->uid) ;
        DB::table('users')->where('id', '=', $data->uid)->delete();
 
       $get_userdetails= DB::table('userdetails')->where('user_id', '=', $data->uid)->get();
@@ -2908,11 +2909,11 @@ class restfulModel extends Model
         // echo "sadasdasdasdasd";
       };
 
-      if($data->uid){
-        return array('result'=>"true");
-      }else{
-        return array('result'=>"false");
-      };
+      // if($data->uid){
+      //   return array('result'=>"true");
+      // }else{
+      //   return array('result'=>"false");
+      // };
 
     };
   }
